@@ -1,0 +1,81 @@
+/*Estilos de contenedor de Card Feed*/
+.conteiner-card_feed{
+  width: 40rem;
+  background-color: #e1ecec;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.conteiner-card_feed-header{
+  padding: 0.5rem 1rem;
+  background-color: #c7d3d3;
+  display: flex;
+  gap: 10px;
+}
+
+/* Estilos de contenedor de header */
+
+.card_feed-img .img{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 255, 0.493);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & img{
+    width: 100%;
+  }
+}
+.card_feed-username{
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  & h2{
+    font-size: 1.2rem;
+  }
+  & p{
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.651);
+  }
+}
+
+/* Estilos de contenedor de Body */
+.conteiner-card_feed-body{
+  padding: 0 1rem;
+  height: 20rem;
+}
+.card_feed-imgs{
+  height: 80%;
+  background-color: red;
+}
+.card_feed-description{
+  height: 20%;
+}
+/* Estilos de footer */
+.conteiner-card_feed-footer{
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 0;
+  font-size: 0.7rem;
+  background-color: rgba(0, 0, 0, 0.116);
+  & .r{
+    transform: rotate(-90deg);
+  }
+  & h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all ease .2s;
+    &:hover{
+      background-color: rgba(124, 124, 124, 0.199);
+    }
+  }
+}
