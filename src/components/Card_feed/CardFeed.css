@@ -1,22 +1,22 @@
 /*Estilos de contenedor de Card Feed*/
-.conteiner-card_feed{
+.conteiner-card_feed {
   width: 50vw;
   background-color: #c7d3d3;
   border-radius: 10px;
   overflow: hidden;
-  transition: all ease .2s;
-  &:hover{
-    transform: scale(1.04);
-    .btn{
+  transition: all ease 0.2s;
+  &:hover {
+    transform: scale(1.02);
+    .btn {
       display: block;
     }
-    .cant-imgs{
+    .cant-imgs {
       display: block;
     }
   }
 }
 
-.conteiner-card_feed-header{
+.conteiner-card_feed-header {
   padding: 0.5rem 1rem;
   display: flex;
   gap: 10px;
@@ -24,7 +24,7 @@
 
 /* Estilos de contenedor de header */
 
-.card_feed-img .img{
+.card_feed-img .img {
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -33,18 +33,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  & img{
+  & img {
     width: 100%;
   }
 }
-.card_feed-username{
+.card_feed-username {
   display: flex;
   flex-direction: column;
   gap: 0;
-  & h2{
+  & h2 {
     font-size: 1.2rem;
   }
-  & p{
+  & p {
     font-size: 0.8rem;
     color: rgba(0, 0, 0, 0.651);
   }
@@ -52,7 +52,7 @@
 
 /* Estilos de contenedor de Body */
 
-.card_feed-description{
+.card_feed-description {
   padding: 0.3rem 1rem;
   font-size: calc(12px + 0.3vw);
   color: rgb(22, 22, 22);
@@ -62,7 +62,7 @@
 }
 
 /* Estilos de footer de card*/
-.conteiner-card_feed-footer{
+.conteiner-card_feed-footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -71,54 +71,85 @@
 }
 
 /* Estilos de boton de footer de card */
-.conteiner-card_feed-footer-icons-left{
+.conteiner-card_feed-footer-icons-left {
   display: flex;
   gap: 1rem;
 }
-.btn-card-feed{
+.btn-card-feed {
   width: 18px;
   color: rgb(0, 0, 0);
+  transition: all ease 0.2s;
 }
 
 /* Estilos de icono de dar me gusta */
-.conteiner-heart{
+.conteiner-heart {
   display: flex;
   gap: 0.3rem;
   cursor: pointer;
-  &:hover *{
-    color: rgba(255, 104, 4, 0.616);
+  transition: all ease 0.2s;
+  &:hover * {
+    color: rgba(255, 4, 4, 0.616);
   }
 }
+.liked *{
+  color: rgba(255, 4, 4, 0.616);
+}
 /* Estilos de icono de comentario */
-.conteiner-comment{
+.conteiner-comment {
   cursor: pointer;
   display: flex;
   gap: 0.3rem;
-  &:hover *{
+  transition: all ease 0.2s;
+  
+  &:hover * {
     color: rgba(0, 0, 255, 0.541);
   }
 }
 /* Estilos generales de cada btn del footer*/
-.btn-footer{
+.btn-footer {
   padding: 0 0.2rem;
   border-radius: 10px;
+  transition: all ease 0.3s;
+}
+.conteiner-btn-publication {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  gap: 0.4rem;
+  &:hover * {
+    color: rgba(0, 0, 255, 0.541);
+    & .btn-footer-text-view-publication {
+      color: black;
+      font-size: 0.7rem;
+      display: block;
+    }
+  }
+}
+/* Texto de ver publicacion */
+.btn-footer-text-view-publication {
+  color: black;
+  font-size: 0.7rem;
+  display: none;
+  transition: all ease .2s;
 }
 
 /* Media Queris */
 
 @media (max-width: 1000px) {
-  .conteiner-card_feed{
+  .conteiner-card_feed {
     width: 70vw;
   }
 }
-@media (max-width: 600px){
-  .conteiner-card_feed{
+@media (max-width: 600px) {
+  .conteiner-card_feed {
     width: 80vw;
   }
 }
 
-@media (max-width: 400px){
-  .conteiner-card_feed{
+@media (max-width: 400px) {
+  .conteiner-card_feed {
     width: 70vw;
   }
 }
