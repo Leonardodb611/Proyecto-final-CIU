@@ -4,7 +4,11 @@ import { CarrouselImages } from '../CarrouselImages/CarrouselImages';
 // Importacion de Componentes de Lucide
 import { Heart, MessageCircle, SquareArrowOutUpRight } from 'lucide-react';
 import { useState } from 'react';
+import { CommentInput } from '../CommentInput/CommentInput';
 export function CardFeed({ publication, updateUsers, publications }) {
+  // Estado de comentarios
+  const [comment, setComment] = useState(false)
+  //Estado de Likes
   const [liked,setLiked] = useState(false)
   // Funcion para dar like
   const handleLike = (id) => {
@@ -54,7 +58,10 @@ export function CardFeed({ publication, updateUsers, publications }) {
             <Heart className='btn-card-feed' fill={liked ? 'rgba(255, 4, 4, 0.616)':'none'}/>
             <span className='comment-num'>{publication.likes}</span>
           </div>
-          <div className='conteiner-comment btn-footer' title='Comentar'>
+          <div 
+          onClick={()=>setComment(!comment)}
+          className='conteiner-comment btn-footer' 
+          title='Comentar'>
             <MessageCircle className='btn-card-feed btn-comment'></MessageCircle>
             <span className='comment-num'>{publication.comments.length}</span>
           </div>
@@ -66,6 +73,7 @@ export function CardFeed({ publication, updateUsers, publications }) {
           </Link>
         </div>
       </div>
+      <CommentInput comment={{comment,setComment}} idPost = {publication.id} publications={publications} updateUsers = {updateUsers}/>
     </article>
   );
 }
