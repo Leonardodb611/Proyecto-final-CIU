@@ -1,14 +1,23 @@
 /*Estilos de contenedor de Card Feed*/
 .conteiner-card_feed{
-  width: 40rem;
-  background-color: #e1ecec;
+  width: 50vw;
+  background-color: #c7d3d3;
   border-radius: 10px;
   overflow: hidden;
+  transition: all ease .2s;
+  &:hover{
+    transform: scale(1.04);
+    .btn{
+      display: block;
+    }
+    .cant-imgs{
+      display: block;
+    }
+  }
 }
 
 .conteiner-card_feed-header{
   padding: 0.5rem 1rem;
-  background-color: #c7d3d3;
   display: flex;
   gap: 10px;
 }
@@ -42,40 +51,74 @@
 }
 
 /* Estilos de contenedor de Body */
-.conteiner-card_feed-body{
-  padding: 0 1rem;
-  height: 20rem;
-}
-.card_feed-imgs{
-  height: 80%;
-  background-color: red;
-}
+
 .card_feed-description{
-  height: 20%;
+  padding: 0.3rem 1rem;
+  font-size: calc(12px + 0.3vw);
+  color: rgb(22, 22, 22);
+  width: 100ch; /* aprox. 40 caracteres */
+  overflow: hidden;
+  white-space: nowrap;
 }
-/* Estilos de footer */
+
+/* Estilos de footer de card*/
 .conteiner-card_feed-footer{
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  padding: 1rem 0;
-  font-size: 0.7rem;
-  background-color: rgba(0, 0, 0, 0.116);
-  & .r{
-    transform: rotate(-90deg);
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  background-color: rgba(0, 0, 0, 0.021);
+}
+
+/* Estilos de boton de footer de card */
+.conteiner-card_feed-footer-icons-left{
+  display: flex;
+  gap: 1rem;
+}
+.btn-card-feed{
+  width: 18px;
+  color: rgb(0, 0, 0);
+}
+
+/* Estilos de icono de dar me gusta */
+.conteiner-heart{
+  display: flex;
+  gap: 0.3rem;
+  cursor: pointer;
+  &:hover *{
+    color: rgba(255, 104, 4, 0.616);
   }
-  & h2{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.3rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all ease .2s;
-    &:hover{
-      background-color: rgba(124, 124, 124, 0.199);
-    }
+}
+/* Estilos de icono de comentario */
+.conteiner-comment{
+  cursor: pointer;
+  display: flex;
+  gap: 0.3rem;
+  &:hover *{
+    color: rgba(0, 0, 255, 0.541);
+  }
+}
+/* Estilos generales de cada btn del footer*/
+.btn-footer{
+  padding: 0 0.2rem;
+  border-radius: 10px;
+}
+
+/* Media Queris */
+
+@media (max-width: 1000px) {
+  .conteiner-card_feed{
+    width: 70vw;
+  }
+}
+@media (max-width: 600px){
+  .conteiner-card_feed{
+    width: 80vw;
+  }
+}
+
+@media (max-width: 400px){
+  .conteiner-card_feed{
+    width: 70vw;
   }
 }

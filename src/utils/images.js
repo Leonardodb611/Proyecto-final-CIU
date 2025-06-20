@@ -4,7 +4,7 @@ const images = [
   'https://png.pngtree.com/png-clipart/20231019/original/pngtree-user-profile-avatar-png-image_13369991.png',
   'https://w7.pngwing.com/pngs/831/902/png-transparent-account-avatar-profile-user-avatars-icon.png'
 ]
-function getRandomInt(min, max) {
+export function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 export const elegirUnaImagen = ()=>{

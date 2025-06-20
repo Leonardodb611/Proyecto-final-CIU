@@ -1,7 +1,74 @@
 .conteiner-header{
+  height: 100vh;
+  width: 20vw;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   padding: 0.5rem 1rem;
   background-color: #151c1e;
   color: white;
+  align-items: left;
+  position: sticky;
+  left: 0;
+  top: 0;
+}
+/* Estilos de titulo */
+.container-logo-title{
+  text-align: center;
+  padding:0 0 1rem 0;
+  font-size: calc(12px + 0.5rem);
+}
+/* Estilos de contenedor de navbar */
+
+.header-container-navbar{
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Estilos de item de navbar */
+
+.header-conteiner-item{
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  gap: 1rem;
+  transition: all ease .2s;
+  cursor: pointer;
+  border-radius: 10px ;
+  font-size: 1rem;
+  & .header-item-icon{
+    width: 25px;
+    height: 25px;
+  }
+  &:hover{
+    background-color: rgba(255, 255, 255, 0.034);
+    color: aqua;
+  }
+}
+
+/* Media Querys */
+@media (max-width: 768px) {
+  /* Estilos de contendor del header */
+  .conteiner-header{
+    padding-top: 2rem;
+    width: auto;
+  }
+  /* Estilos de icono de cada item */
+  .header-item-icon{
+    width: 15px;
+    height: 15px;
+  }
+  .header-item-text{
+    display: none;
+  }
+  
+  .container-logo-title{
+    display: none;
+  }
 }
