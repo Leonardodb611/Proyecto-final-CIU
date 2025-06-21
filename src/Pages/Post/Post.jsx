@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom'
+import PostDetail from '../../components/Post_detail/PostDetail'
 
 export function Post(){
   const { id } = useParams()
   return(
-    <h2> Esto es del Post de id {id}</h2>
+    <PostDetail id={id} />
   )
 }
