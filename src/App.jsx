@@ -4,6 +4,7 @@ import Home from './Pages/Home/Home'
 import UserProfile from './Pages/User/UserProfile.jsx'
 import { Header } from './components/Header/Header'
 import { Post } from './pages/Post/Post.jsx'
+import Register from './Pages/Register/Register.jsx'
 function App() {
   return (
     <div className='container-principal'>
@@ -12,6 +13,7 @@ function App() {
         <Route path='/home/' element={<Home/>}/>
         <Route path='/user/my-profile' element={<UserProfile/>}/>
         <Route path='/post/:id' element={<Post />} />
+        <Route path='/register' element={<Register />} />
       </Routes>
     </div>
   )

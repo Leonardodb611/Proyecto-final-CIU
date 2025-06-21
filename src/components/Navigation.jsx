@@ -6,6 +6,7 @@ function Navigation() {
     <div>Navigation
     <Link to={"/"}> Inicio</Link>
     <Link to={"/users"}> Inicio</Link>
+    <Link to={"/register"}> Registro</Link>
     </div>  
   )
 }
