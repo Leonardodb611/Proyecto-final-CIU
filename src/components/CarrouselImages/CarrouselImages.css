@@ -1,6 +1,6 @@
 .container-carrousel-images{
   height: 30rem;
-  width: 100%;
+  max-width: 100%;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -11,7 +11,7 @@
   height: 30rem;
 }
 /* Botones left rigth */
-.btn{
+.custom-btn{
   display: none;
   border-radius: 10px;
   background-color: rgba(68, 68, 68, 0.5);
@@ -19,14 +19,13 @@
   transition: all ease .2s;
   cursor: pointer;
   &:hover{
-    background-color: aqua;
+    background-color: rgba(56, 56, 56, 0.877);
     color: rgb(255, 255, 255);
     transform: scale(1.2);
   }
 }
 .btn-left{
   position: absolute;
-  z-index: 2;
   left: 0;
   margin-left: 10px;
 }
@@ -46,4 +45,5 @@
   margin-bottom: 5px;
   border-radius: 5px;
   bottom: 0;
+  z-index: 99;
 }

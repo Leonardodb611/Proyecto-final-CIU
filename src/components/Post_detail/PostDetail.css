@@ -46,12 +46,12 @@
 }
 
 /* Carrusel */
-.post-detail-carousel {
+/* .post-detail-carousel {
   margin-bottom: 1rem;
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
-}
+} */
 
 /* Likes */
 .post-detail-heart {

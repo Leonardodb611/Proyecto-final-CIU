@@ -7,7 +7,7 @@
   transition: all ease 0.2s;
   &:hover {
     transform: scale(1.02);
-    .btn {
+    .custom-btn {
       display: block;
     }
     .cant-imgs {
@@ -26,6 +26,7 @@
 
 .card_feed-img .img {
   border-radius: 50%;
+  border: 2px solid #588b8b;
   width: 50px;
   height: 50px;
   background-color: rgba(0, 0, 255, 0.493);
@@ -78,7 +79,6 @@
 .btn-card-feed {
   width: 18px;
   color: rgb(0, 0, 0);
-  transition: all ease 0.2s;
 }
 
 /* Estilos de icono de dar me gusta */
@@ -86,10 +86,10 @@
   display: flex;
   gap: 0.3rem;
   cursor: pointer;
-  transition: all ease 0.2s;
   &:hover * {
     color: rgba(255, 4, 4, 0.616);
   }
+
 }
 .liked *{
   color: rgba(255, 4, 4, 0.616);
@@ -99,8 +99,6 @@
   cursor: pointer;
   display: flex;
   gap: 0.3rem;
-  transition: all ease 0.2s;
-  
   &:hover * {
     color: rgba(0, 0, 255, 0.541);
   }
@@ -109,7 +107,10 @@
 .btn-footer {
   padding: 0 0.2rem;
   border-radius: 10px;
-  transition: all ease 0.3s;
+  transition: all ease .3s;
+  &:active{
+    transform: scale(0.7);
+  }
 }
 .conteiner-btn-publication {
   cursor: pointer;
@@ -118,20 +119,18 @@
   justify-content: center;
   text-decoration: none;
   gap: 0.4rem;
+  transition: all ease .2s;
   &:hover * {
-    color: rgba(0, 0, 255, 0.541);
+    color: #345a5a;
     & .btn-footer-text-view-publication {
-      color: black;
-      font-size: 0.7rem;
-      display: block;
+      opacity: 1;
     }
   }
 }
 /* Texto de ver publicacion */
 .btn-footer-text-view-publication {
-  color: black;
   font-size: 0.7rem;
-  display: none;
+  opacity: 0;
   transition: all ease .2s;
 }
 

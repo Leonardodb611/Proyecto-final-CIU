@@ -1,50 +1,51 @@
-import { useState } from 'react'
-import './CommentInput.css'
-import { sendComment } from '../../utils/util.js'
-export function CommentInput({comment,idPost,updateUsers, publications}){
-  // Estado de input
-  const [commentText,setCommentText] = useState('')
-  // Funcion para actualizar contenido de comentario
-  const updateCommentText = (e)=>{
-    setCommentText(e.target.value)
-  }
-  // Funcion de comentari
-  const handleComment = async (idPost)=>{
-    const newComment = await sendComment(commentText,idPost,1)
-    if(newComment){
-      const newPublics = publications.map(p=>{
-        if(p.id === idPost){
-          p.comments.push(newComment)
-        }
-        return p
-      })
-      setCommentText('')
-      updateUsers(newPublics)
-      comment.setComment(!comment)
-    }else{
-      alert('No se pudo comentar')
-    }
-  }
-
+import './CommentInput.css';
+import { useSendComment } from '../../hooks/useSendComment.js';
+export function CommentInput({ comment, idPost, updateUsers, publications }) {
+  const {
+    textAlertComment,
+    commentSend,
+    updateCommentText,
+    setCommentText,
+    handleComment,
+    commentText,
+    showSpinner,
+  } = useSendComment(updateUsers, publications);
   // Funcion para cancerlas
-  const cancel = ()=>{
-    comment.setComment(false)
-    setCommentText('')
-  }
-  return(
-    <div className={`form-comment ${comment.comment? 'block':''}`}>
-      <input 
+  const cancel = () => {
+    setCommentText('');
+    comment.setComment(false);
+  };
+  return (
+    <div className={`form-comment ${comment.comment ? 'block' : ''}`}>
+      <input
         onChange={updateCommentText}
-        type="text" 
-        maxLength={500}/>
+        type='text'
+        maxLength={500}
+        value={commentText}
+      />
       <div className='btns-comment'>
-        <button className='comentar' onClick={()=>handleComment(idPost)}>Comentar</button>
-        <button 
-          className='cancelar' 
-          onClick={cancel}>
+        { showSpinner && (
+          <div className='spinner-border m-1 custom-spinner-send-comment' role='status'>
+            <span className='sr-only'></span>
+          </div>
+        )}
+        <span
+          className={`text-comment-send ${commentSend ? 'show' : ''} ${
+            textAlertComment === 'No se pudo enviar el comentario'
+              ? 'color-red'
+              : ''
+          }`}
+        >
+          {textAlertComment}
+        </span>
+
+        <button className='comentar' onClick={() => handleComment(idPost)} disabled = {showSpinner? true : false}>
+          Comentar
+        </button>
+        <button className='cancelar' onClick={cancel}>
           Cancelar
-          </button>
+        </button>
       </div>
     </div>
-  )
+  );
 }

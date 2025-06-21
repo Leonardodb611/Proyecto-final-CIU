@@ -24,3 +24,8 @@ export const sendComment = async (comentText, idPost, idUser) => {
     return false
   }
 };
+
+
+export const inputNotVoid = (input) => {
+  return input.replace(/\s+/g, '').length === 0
+}

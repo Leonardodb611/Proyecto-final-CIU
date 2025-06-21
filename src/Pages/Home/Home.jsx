@@ -9,13 +9,15 @@ function Home() {
   return (<>
     <main className='container-main-home'>
       {
-        publications && publications.map(p => <CardFeed publication = {p} key={p.id} updateUsers={setPublications} publications = {publications}/>)
+        publications ? publications.map(p => <CardFeed publication = {p} key={p.id} updateUsers={setPublications} publications = {publications}/>)
+        : <span style={{color: 'white', fontWeight: '600'}}>No se pudieron cargar las publicaciones</span>
       }
     </main>
     <aside className='container-aside-home'>
       <h2 className="title-aside">Sugerencias de perfiles</h2>
       {
-        users && users.map(u => <CardAside user={u} key={u.id}/>)
+        users ? users.map(u => <CardAside user={u} key={u.id}/>) 
+        : <span style={{color: 'white', fontWeight: '600'}}>No se pudieron cargar los usuarios</span>
       }
     </aside>
     </>

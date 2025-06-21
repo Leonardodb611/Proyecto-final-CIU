@@ -12,9 +12,9 @@ export function CarrouselImages({ images }) {
   return (
     <div className='container-carrousel-images'>
       <span className='cant-imgs'>{`${numImg+1}/${images.length}`}</span>
-      <ArrowLeft className='btn-left btn' onClick={()=>handleClick(-1)}/>
-      <ArrowRight className='btn-rigth btn' onClick={()=>handleClick(1)}/>
       <img src={images[numImg]?.url} className='img-carrousel' />
+      <ArrowLeft className='btn-left custom-btn' onClick={()=>handleClick(-1)}/>
+      <ArrowRight className='btn-rigth custom-btn' onClick={()=>handleClick(1)}/>
     </div>
   );
 }
