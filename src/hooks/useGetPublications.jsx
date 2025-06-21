@@ -39,6 +39,6 @@ export const useGetPublications = () => {
     // Ejecuto la funcion
     getPostsWithCommentsAndImages();
   }, []);
-  return { publications };
+  return { publications, setPublications };
 };
 

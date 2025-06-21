@@ -30,7 +30,7 @@ export function Header() {
       </div>
       <div className='conteiner-user'>
         <ul className='header-container-navbar'>
-          <Link className='header-conteiner-item' to={'/user/myprofile'}>
+          <Link className='header-conteiner-item' to={'/user/my-profile'}>
             <UserRound  className='header-item-icon'/>
             <span className="header-item-text">
               Mi Perfil

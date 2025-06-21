@@ -1,6 +1,6 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
-import Home from './Pages/Home/Home'
+import Home from './pages/Home/Home.jsx'
 import UserProfile from './Pages/User/UserProfile.jsx'
 import { Header } from './components/Header/Header'
 import { Post } from './pages/Post/Post.jsx'
@@ -13,7 +13,6 @@ function App() {
         <Route path='/home/' element={<Home/>}/>
         <Route path='/user/my-profile' element={<UserProfile/>}/>
         <Route path='/post/:id' element={<Post />} />
-        <Route path='/register' element={<Register />} />
       </Routes>
     </div>
   )
