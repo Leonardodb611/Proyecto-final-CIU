@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 export const useGetUsers = () => {
-  const [users,setUsers] = useState()
+  const [users,setUsers] = useState([])
   useEffect(()=>{
     fetch(`http://localhost:3001/users`)
     .then(res=>res.json())

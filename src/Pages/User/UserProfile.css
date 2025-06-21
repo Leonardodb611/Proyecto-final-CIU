@@ -1,0 +1,10 @@
+.container-main {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3rem;
+}

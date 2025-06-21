@@ -1,43 +1,32 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
+import { CardFeed } from "../../components/Card_feed/CardFeed";
+import { useGetPublications } from "../../hooks/useGetPublications";
+import { useRandomUser } from "../../hooks/useGetRamdomUser";
+import './UserProfile.css'
 
+function Profile() {
+  const { publications, setPublications } = useGetPublications();
+  const { randomUser } = useRandomUser();
 
-function Users() {
-    const [users, setUsers] = useState([])
+  if (!publications || publications.length === 0 || !randomUser) {
+    return <p style={{ color: "white" }}> Cargando ...</p>;
+  }
+  const publicationsByUser = randomUser
+    ? publications.filter((p) => p.UserId === randomUser.id)
+    : [];
 
-    async function obtenerUsuarios(){
-    try{
-        const response = await fetch('http://localhost:3001/users')
-        const data = await response.json()
-        setUsers(data)
-    }
-    catch{
-        console.error("error");
-        
-    }
-    }
-
-    function listarUsuarios(){
-        return (
-            users.map((cli) => (
-        <div key={cli.id}>
-        <p>{cli.id}</p>
-        <p>{cli.nickName}</p>
-        </div>
-        ))
-        )
-    }
-
-    useEffect(() => {
-    obtenerUsuarios();
-    }, []);
-  
   return (
-    
-    <div>
-        {listarUsuarios()}
-    </div>
-
-  )
+    <main className="container-main">
+      {publicationsByUser.map((p) => (
+        <CardFeed
+          publication={p}
+          key={p.id}
+          updateUsers={setPublications}
+          publications={publications}
+        />
+      ))}
+    </main>
+  );
 }
 
-export default Users
+export default Profile;
