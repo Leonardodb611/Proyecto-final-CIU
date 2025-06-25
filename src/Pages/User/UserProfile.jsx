@@ -23,7 +23,6 @@ function Profile() {
   return (
     <main className="container-main">
       <UserBanner user={randomUser}></UserBanner>
-      <br></br>
       {publicationsByUser.map((p) => (
         <CardFeed
           publication={p}

@@ -17,7 +17,7 @@ function Register() {
   const setEmailNuevo = (e) =>{
     
     setEmail(e)
-    
+    console.log(email)
   }
 
   function validarEmail(email) {
@@ -49,7 +49,7 @@ function Register() {
       }
       
       const data = await respuesta.json()
-      
+      console.log("usuario creado" , data)
       notifyOk()
       setTimeout(()=>{
       navigate('../login')
@@ -59,7 +59,7 @@ function Register() {
       
     }
     catch(error){
-      
+      console.log(error)
       notifyError()
     }
   }
@@ -82,21 +82,21 @@ function Register() {
       <h3 className='mt-4'>Registro</h3>
   <div className='p-5 '>
     
-  <div data-mdb-input-init className="form-outline mb-4">
-    <input type="string" id="form2Example1" className="form-control" required onChange={(e)=>setUsuario(e.target.value)}/>
-    <label className="form-label" htmlFor="form2Example1">Nombre de usuario</label>
+  <div data-mdb-input-init class="form-outline mb-4">
+    <input type="string" id="form2Example1" class="form-control" required onChange={(e)=>setUsuario(e.target.value)}/>
+    <label class="form-label" for="form2Example1">Nombre de usuario</label>
   </div>
 
  
-  <div data-mdb-input-init className="form-outline mb-4">
-    <input  type="email" id="form2Example2" className="form-control" onChange={(e)=>setEmailNuevo(e.target.value)} required/>
-    <label className="form-label" htmlFor="form2Example2">Email</label>
+  <div data-mdb-input-init class="form-outline mb-4">
+    <input  type="email" id="form2Example2" class="form-control" onChange={(e)=>setEmailNuevo(e.target.value)} required/>
+    <label class="form-label" for="form2Example2">Email</label>
   </div>
 
   
-  <div className="row mb-4 w-100">
-    <div className="col d-flex justify-content-center w-100">
-      <button data-mdb-ripple-init type="button" className="btn btn-primary btn-block mb-4 w-100 w-md-50 " onClick={()=>crearUsuario(nickName, email) }>Sign in</button>
+  <div class="row mb-4 w-100">
+    <div class="col d-flex justify-content-center w-100">
+      <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4 w-100 w-md-50 " onClick={()=>crearUsuario(nickName, email) }>Sign in</button>
     </div>
 
     
@@ -105,7 +105,7 @@ function Register() {
   
   
   
-  <div className="text-center">
+  <div class="text-center">
     <p>Ya tenes cuenta? <Link to="/login">Registrarse</Link></p>
     
   </div>
