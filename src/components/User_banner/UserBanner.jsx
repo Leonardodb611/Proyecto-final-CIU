@@ -1,0 +1,20 @@
+import './UserBanner.css'
+
+export function UserBanner({ user }) {
+
+    return (
+      <div className="container-banner_profile">
+        <div className="container-img_profile">
+          <div className="img">
+            <img
+              src="https://s3.ppllstatics.com/lasprovincias/www/pre2017/multimedia/RC/201501/12/media/cortadas/avatar--235x235.jpg"
+              alt=""
+            />
+          </div>
+          <div className="banner-nickName">
+                <h1>{user.nickName}</h1>
+          </div>
+        </div>
+      </div>
+    );
+}
