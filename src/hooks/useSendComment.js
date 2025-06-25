@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { sendComment } from '../utils/util.js';
 import { inputNotVoid } from '../utils/util.js';
-export const useSendComment = (updateUsers, publications) => {
+export const useSendComment = (updateUsers, publications=null, comments =null,user) => {
   // Estado de Spinner
   const [showSpinner,setShowSpinner] = useState(false)
   // Estado de texto de alerta
@@ -27,18 +27,25 @@ export const useSendComment = (updateUsers, publications) => {
     setShowSpinner(true)
     setTimeout(async () => {
       setShowSpinner(false)
-      const newComment = await sendComment(commentText, idPost, 1);
+      const newComment = await sendComment(commentText, idPost, 2);
       setCommentSend(true);
       if (newComment) {
         setCommentSend(true);
-        const newPublics = publications.map((p) => {
+        if(publications !==null){
+          const newPublics = publications.map((p) => {
           if (p.id === idPost) {
             p.comments.push(newComment);
           }
           return p;
         });
+          updateUsers(newPublics);
+        }else{
+          newComment.User = user
+          const newComments = [... comments, newComment]
+          updateUsers(newComments)
+        }
+        
         setCommentText('');
-        updateUsers(newPublics);
       } else {
         setTextAlertComment('No se pudo enviar el comentario');
       }

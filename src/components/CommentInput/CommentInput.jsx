@@ -1,6 +1,8 @@
 import './CommentInput.css';
 import { useSendComment } from '../../hooks/useSendComment.js';
-export function CommentInput({ comment, idPost, updateUsers, publications }) {
+import { useGetUserById } from '../../hooks/useGetUserById.jsx';
+export function CommentInput({ comment, idPost, updateUsers, publications=null, comments = null }) {
+  const user = useGetUserById(2)
   const {
     textAlertComment,
     commentSend,
@@ -9,7 +11,7 @@ export function CommentInput({ comment, idPost, updateUsers, publications }) {
     handleComment,
     commentText,
     showSpinner,
-  } = useSendComment(updateUsers, publications);
+  } = useSendComment(updateUsers, publications,comments,user);
   // Funcion para cancerlas
   const cancel = () => {
     setCommentText('');

@@ -2,32 +2,15 @@ import './CardFeed.css';
 import { Link } from 'react-router-dom';
 import { CarrouselImages } from '../CarrouselImages/CarrouselImages';
 // Importacion de Componentes de Lucide
-import { Heart, MessageCircle, SquareArrowOutUpRight } from 'lucide-react';
+import { SquareArrowOutUpRight } from 'lucide-react';
 import { useState } from 'react';
 import { CommentInput } from '../CommentInput/CommentInput';
+import { LikeButton } from '../ui/LikeButton/LikeButton';
+import { CommentButton } from '../ui/CommentButton/CommentButton';
 export function CardFeed({ publication, updateUsers, publications }) {
   // Estado de comentarios
   const [comment, setComment] = useState(false)
-  //Estado de Likes
-  const [liked,setLiked] = useState(false)
-  // Funcion para dar like
-  const handleLike = (id) => {
 
-    let num = 1
-    if(liked){
-      num = -1
-      setLiked(false)
-    }else{
-      setLiked(true)
-    }
-    const publicationsUpdate = publications.map(p => {
-      if(p.id === id){
-        p.likes = p.likes + num
-      }
-      return p
-    })
-    updateUsers(publicationsUpdate)
-  }
   return (
     <article className='conteiner-card_feed'>
       <div className='conteiner-card_feed-header'>
@@ -48,23 +31,9 @@ export function CardFeed({ publication, updateUsers, publications }) {
         {publication.images.length > 0 && <CarrouselImages images={publication.images} />}
       </div>
       <div className='conteiner-card_feed-footer'>
-        <div
-          className='conteiner-card_feed-footer-icons-left'
-        >
-          <div
-            title={`${liked ? 'No' : 'Dar'} Me gusta`}
-            onClick = {()=>{handleLike(publication.id)}}
-            className={`conteiner-heart btn-footer ${liked ? 'liked':''}`}>
-            <Heart className='btn-card-feed' fill={liked ? 'rgba(255, 4, 4, 0.616)':'none'}/>
-            <span className='comment-num'>{publication.likes}</span>
-          </div>
-          <div 
-          onClick={()=>setComment(!comment)}
-          className='conteiner-comment btn-footer' 
-          title='Comentar'>
-            <MessageCircle className='btn-card-feed btn-comment'></MessageCircle>
-            <span className='comment-num'>{publication.comments.length}</span>
-          </div>
+        <div className='conteiner-card_feed-footer-icons-left'>
+          <LikeButton publications={publications} updateUsers={updateUsers} publication={publication} />
+          <CommentButton publication= {publication} setComment ={setComment} comment = {comment} />
         </div>
         <div title='Ver Publicacion' className='btn-footer conteiner-btn-publication'>
           <Link to={`/post/${publication.id}`} className='conteiner-btn-publication'>

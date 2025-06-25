@@ -12,6 +12,7 @@ const PostDetail = ({ id }) => {
   const [liked, setLiked] = useState(false);
   const [localComments, setLocalComments] = useState([]);
   const [commentVisible, setCommentVisible] = useState(false);
+  console.log(localComments)
 
   useEffect(() => {
     if (post) {
@@ -79,16 +80,16 @@ const PostDetail = ({ id }) => {
 
       <div className="post-detail-comments">
         <h3>
-          Comentarios{' '}
+          Comentarios
           <button onClick={() => setCommentVisible(!commentVisible)}>
             {commentVisible ? 'Cancelar' : 'Comentar'}
           </button>
         </h3>
-        {localComments.length === 0 ? (
+        {localComments?.length === 0 ? (
           <p className="post-detail-no-comments">No hay comentarios aún.</p>
         ) : (
           <ul>
-            {localComments.map((c) => (
+            {localComments?.map((c) => (
               <li key={c.id} className="post-detail-comment-item">
                 <strong>{c.User?.nickName || 'Usuario'}:</strong> {c.content}
               </li>
@@ -98,12 +99,8 @@ const PostDetail = ({ id }) => {
         <CommentInput
           comment={{ comment: commentVisible, setComment: setCommentVisible }}
           idPost={post.id}
-          publications={[post]}
-          updateUsers={(newPosts) => {
-            if (newPosts[0]?.comments) {
-              setLocalComments(newPosts[0].comments);
-            }
-          }}
+          comments={localComments}
+          updateUsers={setLocalComments}
         />
       </div>
     </div>
