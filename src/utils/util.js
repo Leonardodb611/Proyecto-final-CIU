@@ -29,3 +29,7 @@ export const sendComment = async (comentText, idPost, idUser) => {
 export const inputNotVoid = (input) => {
   return input.replace(/\s+/g, '').length === 0
 }
+
+export function cambiarTitulo(tituloNuevo) {
+  document.title = tituloNuevo;
+}

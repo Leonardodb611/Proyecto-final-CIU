@@ -3,9 +3,11 @@ import './Home.css'
 import { useGetPublications } from '../../hooks/useGetPublications'
 import { CardAside } from '../../components/Card_Aside/CardAside'
 import { useGetTenUsers } from '../../hooks/useGetTenUsers'
+import { cambiarTitulo } from '../../utils/util'
 function Home() {
   const { publications, setPublications } = useGetPublications()
   const { users } = useGetTenUsers()
+  cambiarTitulo('Inicio')
   return (<>
     <main className='container-main-home'>
       {
