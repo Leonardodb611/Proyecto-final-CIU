@@ -12,7 +12,7 @@
         width: 100%;
     }
 
-    & :hover{
+    & :hover {
         background-color: #010505;
     }
 }
@@ -26,7 +26,7 @@
 
 .container-banner_profile {
     width: 100%;
-    background: linear-gradient(135deg, #3a6767, #0b1f1f); 
+    background: linear-gradient(135deg, #3a6767, #0b1f1f);
     padding: 1.5rem 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     display: flex;
