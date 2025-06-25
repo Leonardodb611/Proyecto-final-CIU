@@ -22,7 +22,7 @@ function Register() {
 
   
   function notifyError(){toast.error('Hubo un error en la solicitud');}
-  function notifyErrorUser(){toast.error('Hubo un error: nickName existente');}
+  function notifyErrorUser(){toast.error('Hubo un error: nickName existente o email erroneo');}
   function notifyOk(){toast.success('Usuario creado con exito');}
 
   
@@ -78,20 +78,20 @@ function Register() {
   <div className='p-5 '>
     
   <div data-mdb-input-init class="form-outline mb-4">
-    <input type="string" id="form2Example1" class="form-control" onChange={(e)=>setUsuario(e.target.value)}/>
+    <input type="string" id="form2Example1" class="form-control" required onChange={(e)=>setUsuario(e.target.value)}/>
     <label class="form-label" for="form2Example1">Nombre de usuario</label>
   </div>
 
  
   <div data-mdb-input-init class="form-outline mb-4">
-    <input  type="email" id="form2Example2" class="form-control" onChange={(e)=>setEmailNuevo(e.target.value)}/>
+    <input  type="email" id="form2Example2" class="form-control" onChange={(e)=>setEmailNuevo(e.target.value)} required/>
     <label class="form-label" for="form2Example2">Email</label>
   </div>
 
   
   <div class="row mb-4 w-100">
     <div class="col d-flex justify-content-center w-100">
-      <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4 w-100 w-md-50 " onClick={()=>crearUsuario(nickName, email) }>Sign in</button>
+      <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block mb-4 w-100 w-md-50 " onClick={()=>crearUsuario(nickName, email) }>Sign in</button>
 
       
     </div>
