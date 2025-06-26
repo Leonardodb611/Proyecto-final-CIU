@@ -3,7 +3,7 @@ import "./UserBanner.css";
 export function UserBanner({ user }) {
   if (!user) {
     return (
-      <div className="container-banner_profile">
+      <div className="cargando">
         <h1>Cargando...</h1>
       </div>
     );
