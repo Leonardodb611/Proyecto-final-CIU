@@ -1,41 +1,52 @@
-// Importacion de iconos
 import { Heart } from 'lucide-react';
-// Importacion de estados
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export function LikeButton({ publication,publications, updateUsers }) {
-  //Estado de Likes
+export function LikeButton({
+  publication,
+  publications = null,
+  updateUsers = null,
+  setSinglePublication = null,
+}) {
   const [liked, setLiked] = useState(false);
-  // Funcion para dar like
-  const handleLike = (id) => {
-    let num = 1;
-    if (liked) {
-      num = -1;
-      setLiked(false);
-    } else {
-      setLiked(true);
+  const [likes, setLikes] = useState(publication.likes || 0);
+
+  useEffect(() => {
+    setLikes(publication.likes || 0);
+  }, [publication.likes]);
+
+  const handleLike = () => {
+    const change = liked ? -1 : 1;
+    setLiked(!liked);
+    setLikes((prev) => prev + change);
+
+    if (publications && updateUsers) {
+      const updated = publications.map((p) => {
+        if (p.id === publication.id) {
+          return { ...p, likes: (p.likes || 0) + change };
+        }
+        return p;
+      });
+      updateUsers(updated);
+    } else if (setSinglePublication) {
+      setSinglePublication((prev) => ({
+        ...prev,
+        likes: (prev.likes || 0) + change,
+      }));
     }
-    const publicationsUpdate = publications.map((p) => {
-      if (p.id === id) {
-        p.likes = p.likes + num;
-      }
-      return p;
-    });
-    updateUsers(publicationsUpdate);
   };
+
   return (
     <div
       title={`${liked ? 'No' : 'Dar'} Me gusta`}
-      onClick={() => {
-        handleLike(publication.id);
-      }}
+      onClick={handleLike}
       className={`conteiner-heart btn-footer ${liked ? 'liked' : ''}`}
     >
       <Heart
-        className='btn-card-feed'
+        className="btn-card-feed"
         fill={liked ? 'rgba(255, 4, 4, 0.616)' : 'none'}
+        color="red"
       />
-      <span className='comment-num'>{publication.likes}</span>
+      <span className="comment-num">{likes}</span>
     </div>
   );
 }

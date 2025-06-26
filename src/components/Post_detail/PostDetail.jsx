@@ -3,30 +3,35 @@ import { useEffect, useState } from 'react';
 import { useGetPostDetail } from '../../hooks/useGetPostDetail';
 import { CarrouselImages } from '../CarrouselImages/CarrouselImages';
 import { CommentInput } from '../CommentInput/CommentInput';
-import { Heart } from 'lucide-react';
+import { LikeButton } from '../ui/LikeButton/LikeButton';
+import { cambiarTitulo } from '../../utils/util';
 
 const PostDetail = ({ id }) => {
-  const { post, comments = [], images = [], loading, tags = [] } = useGetPostDetail(id);
+  const {
+    post: fetchedPost,
+    comments = [],
+    images = [],
+    loading,
+    tags = [],
+  } = useGetPostDetail(id);
 
-  const [likes, setLikes] = useState(0);
-  const [liked, setLiked] = useState(false);
+  const [post, setPost] = useState(null);
   const [localComments, setLocalComments] = useState([]);
   const [commentVisible, setCommentVisible] = useState(false);
-  console.log(localComments)
 
   useEffect(() => {
-    if (post) {
-      setLikes(post.likes ?? 0);
-      setLiked(false);
+    if (post?.User?.nickName) {
+      cambiarTitulo(`Post de ${post.User.nickName}`);
+    }
+  }, [post]);
+
+  useEffect(() => {
+    if (fetchedPost) {
+      const likes = fetchedPost.likes ?? Math.floor(Math.random() * 50 + 1);
+      setPost({ ...fetchedPost, likes });
       setLocalComments(comments);
     }
-  }, [post, comments]);
-
-  const handleLike = () => {
-    const change = liked ? -1 : 1;
-    setLikes((prev) => prev + change);
-    setLiked((prev) => !prev);
-  };
+  }, [fetchedPost, comments]);
 
   if (loading) return <p className="post-detail-loading">Cargando publicación...</p>;
   if (!post) return <p className="post-detail-error">No se encontró la publicación.</p>;
@@ -56,13 +61,12 @@ const PostDetail = ({ id }) => {
         </div>
       )}
 
-      <div
-        className={`post-detail-heart ${liked ? 'liked' : ''}`}
-        onClick={handleLike}
-        title={`${liked ? 'No' : 'Dar'} Me gusta`}
-      >
-        <Heart className="post-detail-icon" fill={liked ? 'rgba(255, 4, 4, 0.616)' : 'none'} color="red" />
-        <span className="post-detail-like-count">{likes}</span>
+      {/* Botón de Like reutilizable */}
+      <div className="post-detail-like-button-wrapper">
+        <LikeButton
+          publication={post}
+          setSinglePublication={setPost}
+        />
       </div>
 
       <div className="post-detail-tags">
@@ -85,11 +89,11 @@ const PostDetail = ({ id }) => {
             {commentVisible ? 'Cancelar' : 'Comentar'}
           </button>
         </h3>
-        {localComments?.length === 0 ? (
+        {localComments.length === 0 ? (
           <p className="post-detail-no-comments">No hay comentarios aún.</p>
         ) : (
           <ul>
-            {localComments?.map((c) => (
+            {localComments.map((c) => (
               <li key={c.id} className="post-detail-comment-item">
                 <strong>{c.User?.nickName || 'Usuario'}:</strong> {c.content}
               </li>

@@ -1,11 +1,8 @@
-import { useParams } from 'react-router-dom'
-import PostDetail from '../../components/Post_detail/PostDetail'
-import { cambiarTitulo } from '../../utils/util'
+import { useParams } from 'react-router-dom';
+import PostDetail from '../../components/Post_detail/PostDetail';
 
-export function Post(){
-  const { id } = useParams()
-  cambiarTitulo('AHSJDHJASHD')
-  return(
-    <PostDetail id={id} />
-  )
+export function Post() {
+  const { id } = useParams();
+
+  return <PostDetail id={id} />;
 }
