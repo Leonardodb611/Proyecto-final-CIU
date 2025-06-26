@@ -11,6 +11,16 @@
     margin: 0 auto;
 }
 
+.text-profile{
+    color:aliceblue;
+}
+
+.container-text{
+    width: 100%;
+    text-align: left;
+    padding: 0px 2rem;
+}
+
 /*css de carga*/
 .cargando {
     flex: 1;
@@ -19,3 +29,4 @@
     align-items: center;
     flex-direction: column;
 }
+

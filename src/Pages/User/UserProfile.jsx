@@ -14,10 +14,13 @@ function Profile() {
   const publicationsByUser = !isLoading
     ? publications.filter((p) => p.UserId === randomUser.id)
     : [];
-
+  
   return (
     <main className="container-main">
       <UserBanner user={randomUser} />
+      <div className="container-text">
+        <h3 className="text-profile"> Mis posteos:</h3>
+      </div>
       {isLoading ? (
         <p style={{ color: "white", fontWeight: "600" }} className="cargando">
           Cargando perfil...
