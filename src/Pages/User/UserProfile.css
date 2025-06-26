@@ -2,13 +2,18 @@
     padding-bottom: 2rem;
     flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     gap: 3rem;
+    max-width: 100%;
+        /* Ajusta este valor al tamaño que desees */
+        width: 100%;
+        /* Asegura que se adapte bien en pantallas pequeñas */
+        margin: 0 auto;
 }
 
-.cargando{
+.cargando {
     flex: 1;
     display: flex;
     justify-content: center;
