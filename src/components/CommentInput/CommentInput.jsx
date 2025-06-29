@@ -1,8 +1,14 @@
 import './CommentInput.css';
 import { useSendComment } from '../../hooks/useSendComment.js';
 import { useGetUserById } from '../../hooks/useGetUserById.jsx';
-export function CommentInput({ comment, idPost, updateUsers, publications=null, comments = null }) {
-  const user = useGetUserById(2)
+export function CommentInput({
+  comment,
+  idPost,
+  updateUsers,
+  publications = null,
+  comments = null,
+}) {
+  const user = useGetUserById(2);
   const {
     textAlertComment,
     commentSend,
@@ -11,7 +17,7 @@ export function CommentInput({ comment, idPost, updateUsers, publications=null, 
     handleComment,
     commentText,
     showSpinner,
-  } = useSendComment(updateUsers, publications,comments,user);
+  } = useSendComment(updateUsers, publications, comments, user);
   // Funcion para cancerlas
   const cancel = () => {
     setCommentText('');
@@ -26,8 +32,11 @@ export function CommentInput({ comment, idPost, updateUsers, publications=null, 
         value={commentText}
       />
       <div className='btns-comment'>
-        { showSpinner && (
-          <div className='spinner-border m-1 custom-spinner-send-comment' role='status'>
+        {showSpinner && (
+          <div
+            className='spinner-border m-1 custom-spinner-send-comment'
+            role='status'
+          >
             <span className='sr-only'></span>
           </div>
         )}
@@ -40,13 +49,18 @@ export function CommentInput({ comment, idPost, updateUsers, publications=null, 
         >
           {textAlertComment}
         </span>
-
-        <button className='comentar' onClick={() => handleComment(idPost)} disabled = {showSpinner? true : false}>
-          Comentar
-        </button>
-        <button className='cancelar' onClick={cancel}>
-          Cancelar
-        </button>
+        <div style={{display: 'flex', gap:'1rem'}}>
+          <button
+            className='comentar'
+            onClick={() => handleComment(idPost)}
+            disabled={showSpinner ? true : false}
+          >
+            Comentar
+          </button>
+          <button className='cancelar' onClick={cancel}>
+            Cancelar
+          </button>
+        </div>
       </div>
     </div>
   );
