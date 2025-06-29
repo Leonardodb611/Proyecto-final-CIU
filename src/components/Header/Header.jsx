@@ -23,7 +23,7 @@ export function Header() {
               Buscar
             </span>
           </li>
-          <li className='header-conteiner-item'>
+          <li>
             <Link className='header-conteiner-item' to={'/publicar'}>
             <BadgePlus  className='header-item-icon'/>
             <span className="header-item-text">

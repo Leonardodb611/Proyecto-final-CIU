@@ -5,7 +5,7 @@ export function CardAside(props){
     <article className='container-aside-article'>
       <div className='card-aside-left'>
         <div className="card-aside_header">
-          <img src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png" alt="" />
+          <img src="https://s3.ppllstatics.com/lasprovincias/www/pre2017/multimedia/RC/201501/12/media/cortadas/avatar--235x235.jpg" alt="" />
         </div>
         <div className="card-aside-rigth">
           <h2 className="card-nick">{props.user.nickName}</h2>
