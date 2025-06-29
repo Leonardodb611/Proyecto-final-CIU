@@ -1,18 +1,25 @@
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom';
-export const useRedirectLogin = ()=>{
-  const navigate=useNavigate()
+import { useEffect } from 'react';
+export const useRedirectLogin = () => {
+  const navigate = useNavigate();
   const { usuario } = useContext(AuthContext);
-  if(!usuario){
-    navigate('/login')
-  }
-} 
+
+  useEffect(() => {
+    if (!usuario) {
+      navigate('/login');
+    }
+  }, [usuario, navigate]);
+};
 
 export const useRedirectHome = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const { usuario } = useContext(AuthContext);
-  if(usuario){
-    navigate('/home')
-  }
-}
+
+  useEffect(() => {
+    if (usuario) {
+      navigate('/home');
+    }
+  }, [usuario, navigate]);
+};
