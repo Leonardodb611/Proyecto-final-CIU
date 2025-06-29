@@ -26,7 +26,7 @@ export function CardFeed({ publication, updateUsers, publications }) {
       </div>
       <div >
         <div className='card_feed-description'>
-          <p>{publication.description}</p>
+          <p className='card_feed-description-text'>{publication.description}</p>
         </div>
         {publication.images.length > 0 && <CarrouselImages images={publication.images} />}
       </div>

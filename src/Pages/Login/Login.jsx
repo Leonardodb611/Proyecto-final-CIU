@@ -4,8 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-
+import { useRedirectHome } from '../../hooks/useRedirect';
 function Login() {
+    useRedirectHome()
     const [nickName, setNickName] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();

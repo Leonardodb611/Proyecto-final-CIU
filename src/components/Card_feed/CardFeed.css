@@ -54,12 +54,11 @@
 /* Estilos de contenedor de Body */
 
 .card_feed-description {
-  padding: 0.3rem 1rem;
+  height: auto;
+  margin: 0.3rem 1rem;
   font-size: calc(12px + 0.3vw);
   color: rgb(22, 22, 22);
-  width: 100ch; /* aprox. 40 caracteres */
-  overflow: hidden;
-  white-space: nowrap;
+  word-break: break-word;
 }
 
 /* Estilos de footer de card*/

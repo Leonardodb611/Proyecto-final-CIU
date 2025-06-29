@@ -3,9 +3,10 @@ import { useGetUsers } from '../../hooks/useGetUsers'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { useRedirectHome } from '../../hooks/useRedirect';
 
 function Register() {
+  useRedirectHome()
   const [nickName, setNickName] = useState('')
   const [email, setEmail] = useState('')
   const navigate = useNavigate()

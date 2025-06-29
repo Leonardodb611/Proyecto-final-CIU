@@ -4,8 +4,9 @@ import { useGetPublications } from "../../hooks/useGetPublications";
 import { useRandomUser } from "../../hooks/useGetRamdomUser";
 import "./UserProfile.css";
 import { UserBanner } from "../../components/User_banner/UserBanner";
-
+import { useRedirectLogin } from '../../hooks/useRedirect';
 function Profile() {
+  useRedirectLogin()
   const { publications, setPublications } = useGetPublications();
   const { randomUser } = useRandomUser();
 
