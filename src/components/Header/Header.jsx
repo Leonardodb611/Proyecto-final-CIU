@@ -21,10 +21,12 @@ export function Header() {
             </span>
           </li>
           <li className='header-conteiner-item'>
+            <Link className='header-conteiner-item' to={'/publicar'}>
             <BadgePlus  className='header-item-icon'/>
             <span className="header-item-text">
               Publicar
             </span>
+            </Link>
           </li>
         </ul>
       </div>

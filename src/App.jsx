@@ -6,6 +6,7 @@ import { Header } from './components/Header/Header'
 import { Post } from './pages/Post/Post.jsx'
 import Register from './Pages/Register/Register.jsx'
 import Login from './Pages/Login/Login.jsx'
+import NewPost from './Pages/NewPost/NewPost.jsx'
 function App() {
   return (
     <div className='container-principal'>
@@ -17,6 +18,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='*' element = {<Navigate to='/home/' />} />
+        <Route path='/publicar' element={<NewPost />} />
       </Routes>
     </div>
   )
