@@ -5,7 +5,7 @@ export const useGetTenUsers = () => {
   useEffect(()=>{
     fetch(`http://localhost:3001/users`)
     .then(res=>res.json())
-    .then(allUsers => setUsers(allUsers.slice(0,10)))
+    .then(allUsers => setUsers(allUsers.slice(0,5)))
   },[])
   return{ users }
 }

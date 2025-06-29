@@ -1,7 +1,10 @@
 import { UserRound,House, Search,BadgePlus,LogOut } from 'lucide-react';
 import './Header.css';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 export function Header() {
+  const { logout } = useContext(AuthContext)
   return (
     <header className='conteiner-header'>
       <div className='conteiner-logo'>
@@ -38,7 +41,7 @@ export function Header() {
               Mi Perfil
             </span>
           </Link>
-          <li className='header-conteiner-item'>
+          <li className='header-conteiner-item' onClick={logout}>
             <LogOut  className='header-item-icon'/>
             <span className="header-item-text">
               Cerrar Sesión

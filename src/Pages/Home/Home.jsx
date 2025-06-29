@@ -4,7 +4,9 @@ import { useGetPublications } from '../../hooks/useGetPublications'
 import { CardAside } from '../../components/Card_Aside/CardAside'
 import { useGetTenUsers } from '../../hooks/useGetTenUsers'
 import { cambiarTitulo } from '../../utils/util'
+import { useRedirect } from '../../hooks/useRedirect'
 function Home() {
+  useRedirect()
   const { publications, setPublications } = useGetPublications()
   const { users } = useGetTenUsers()
   cambiarTitulo('Inicio')

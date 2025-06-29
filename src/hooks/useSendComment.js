@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { sendComment } from '../utils/util.js';
 import { inputNotVoid } from '../utils/util.js';
-export const useSendComment = (updateUsers, publications=null, comments =null,user) => {
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext.jsx';
+export const useSendComment = (updateUsers, publications=null, comments =null) => {
+  const { usuario } = useContext(AuthContext)
   // Estado de Spinner
   const [showSpinner,setShowSpinner] = useState(false)
   // Estado de texto de alerta
@@ -27,7 +30,7 @@ export const useSendComment = (updateUsers, publications=null, comments =null,us
     setShowSpinner(true)
     setTimeout(async () => {
       setShowSpinner(false)
-      const newComment = await sendComment(commentText, idPost, 2);
+      const newComment = await sendComment(commentText, idPost, usuario.id);
       setCommentSend(true);
       if (newComment) {
         setCommentSend(true);
@@ -40,7 +43,7 @@ export const useSendComment = (updateUsers, publications=null, comments =null,us
         });
           updateUsers(newPublics);
         }else{
-          newComment.User = user
+          newComment.User = usuario
           const newComments = [... comments, newComment]
           updateUsers(newComments)
         }
