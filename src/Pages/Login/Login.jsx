@@ -1,71 +1,95 @@
-import "./Login.css";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-const Login = () => {
-    const [nickName, setNickName] = useState("");
-    const [errorMsg, setErrorMsg] = useState("");
+import React, { useState, useContext } from 'react'
+import { useGetUsers } from '../../hooks/useGetUsers'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastContainer, toast } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
+
+function Login() {
+    const [nickName, setNickName] = useState('');
+    const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const { users } = useGetUsers();
+    const { login } = useContext(AuthContext);
 
-    const handleLogin = async (e) => {
-    e.preventDefault();
-    setErrorMsg("");
-    console.log("handleLogin ejecutado, nickName:", nickName);
-    try {
-        const response = await fetch("http://localhost:3000/user/getAllUsers");
-        if (!response.ok) {
-        setErrorMsg("El servidor respondió con un error");
-        return;
+
+    const PASSWORD_PREDETERMINADA = '123456'; 
+
+    function notifyError() {
+        toast.error('Credenciales incorrectas');
     }
 
-        const users = await response.json();
-        console.log("Usuarios recibidos:", users);
-        const userExists = users.find((user) => user.nickName === nickName);
-        
-        if (userExists) {
-            navigate("/home");
-        } else {
-            setErrorMsg("Usuario no encontrado");
+    function notifyOk() {
+        toast.success('Inicio de sesión exitoso');
+    }
+
+    function handleLogin() {
+        if (!nickName || !password) {
+            toast.error('Por favor, completa todos los campos');
+            return;
         }
-    } catch (error) {
-        setErrorMsg("Error en la conexión al servidor");
-        //console.error(error);
+
+        const userExists = users.find(
+            user => user.nickName.toLowerCase() === nickName.toLowerCase()
+        );
+
+        if (userExists && password === PASSWORD_PREDETERMINADA) {
+        notifyOk();
+        login(userExists);
+        console.log('Login hecho, revisá localStorage:', localStorage.getItem('usuario'));
+        setTimeout(() => {
+            navigate('/home');
+        }, 2000);
+        }   else {
+            notifyError();
+        }
+
     }
-};
+
+    
+
+
+
+
     return (
-        <div className="logUser">
-            <h3>Log in</h3>
-            <form className="loginUserForm" onSubmit={handleLogin}>
-                <div className="inputGroup">
-                    <label htmlFor="nickName">Usuario</label>
-                    <input
-                    type="text"
-                    id="nickName"
-                    value={nickName}
-                    onChange={(e) => setNickName(e.target.value)}
-                    placeholder="Ingrese su usuario"
-                    autoComplete="off"
-                    />
-                    <label htmlFor="contraseña">Contraseña</label>
-                    <input
-                    type="password"
-                    id="password"
-                    autoComplete="off"
-                    placeholder="Ingrese su contraseña"
-                    />
-                    <button type="submit" className="btn btn-success">
-                        Log in
-                    </button>
-                </div>
-            </form>
-            <div className="Register">
-                <p>Crear cuenta de usuario</p>
-                <button type="button" className="btn btn-primary"
-                onClick={() => navigate("../Register")}>
-                    Registrarse
-                </button>
-            </div>
+    <div className='w-100 bg-dark d-flex justify-content-center align-items-center' >  
+        <form className="bg-white d-flex justify-content-center align-items-center flex-column w-50 h-90 rounded">
+        <h3 className='mt-4'>Login</h3>
+        <div className='p-5 '>
+        
+        <div data-mdb-input-init className="form-outline mb-4">
+            <input type="string" id="nickName" className="form-control" required onChange={(e)=>setNickName(e.target.value)}/>
+            <label className="form-label" for="nickName">Nombre de usuario</label>
         </div>
+
+    
+    <div data-mdb-input-init className="form-outline mb-4">
+        <input  type="password" id="contraseña" className="form-control" onChange={(e)=>setPassword(e.target.value)} required/>
+        <label className="form-label" for="contraseña">Contraseña</label>
+    </div>
+
+    
+    <div className="row mb-4 w-100">
+        <div className="col d-flex justify-content-center w-100">
+        <button data-mdb-ripple-init type="button" className="btn btn-primary btn-block mb-4 w-100 w-md-50 " onClick={()=> handleLogin() }>Sign in</button>
+        </div>
+
+        
+    </div>
+
+    
+    
+    
+    <div className="text-center">
+        <p>No tenes cuenta? <Link to="/register">Registrarse</Link></p>
+        
+    </div>
+    </div>
+    </form>
+        <ToastContainer/>
+        </div>
+        
     )
-};
+}
 
 export default Login

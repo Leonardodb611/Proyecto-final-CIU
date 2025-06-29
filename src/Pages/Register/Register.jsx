@@ -106,7 +106,7 @@ function Register() {
   
   
   <div class="text-center">
-    <p>Ya tenes cuenta? <Link to="/login">Registrarse</Link></p>
+    <p>Ya tenes cuenta? <Link to="/login">Iniciar sesión</Link></p>
     
   </div>
   </div>
