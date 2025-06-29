@@ -30,6 +30,8 @@ export const useGetPublications = () => {
         })
       )
       
+      // Ordenar por fecha de publicación (de más nueva a más vieja)
+      publicationsWithCommentsAndImages.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
 
       // Actualizo mi estado
