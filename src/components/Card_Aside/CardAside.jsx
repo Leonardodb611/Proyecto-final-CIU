@@ -1,4 +1,5 @@
 import './CardAside.css'
+import { SquareArrowOutDownRight } from 'lucide-react'
 export function CardAside(props){
   return(
     <article className='container-aside-article'>
@@ -8,7 +9,7 @@ export function CardAside(props){
         </div>
         <div className="card-aside-rigth">
           <h2 className="card-nick">{props.user.nickName}</h2>
-          <p className='card-email'>{props.user.email}</p>
+          <p className='card-email'>@{props.user.nickName}</p>
         </div>
       </div>
       <button className='card-aside-button'>Ver Perfil</button>
