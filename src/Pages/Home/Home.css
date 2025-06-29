@@ -32,7 +32,7 @@
 }
 
 /* Media Querys de aside */
-@media (max-width: 1400px) {
+@media (max-width: 1300px) {
   .container-aside-home{
     display: none;
   }

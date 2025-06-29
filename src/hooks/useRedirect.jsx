@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 export const useRedirectLogin = () => {
   const navigate = useNavigate();
-  const { usuario } = useContext(AuthContext);
+  const { usuario, loading } = useContext(AuthContext);
 
   useEffect(() => {
-    if (!usuario) {
+    if (!loading && !usuario) {
       navigate('/login');
     }
-  }, [usuario, navigate]);
+  }, [loading,usuario, navigate]);
 };
 
 export const useRedirectHome = () => {
