@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { CardFeed } from "../../components/Card_feed/CardFeed";
 import { useGetPublications } from "../../hooks/useGetPublications";
-import { useRandomUser } from "../../hooks/useGetRamdomUser";
 import "./UserProfile.css";
 import { UserBanner } from "../../components/User_banner/UserBanner";
 import { useRedirectLogin } from '../../hooks/useRedirect';
+import { AuthContext } from "../../context/AuthContext";
 function Profile() {
   useRedirectLogin()
   const { publications, setPublications } = useGetPublications();
-  const { randomUser } = useRandomUser();
+  const { usuario, loading } = useContext(AuthContext);
 
-  const isLoading = !publications || !randomUser;
+  const isLoading = !publications || !usuario || loading;
 
   const publicationsByUser = !isLoading
-    ? publications.filter((p) => p.UserId === randomUser.id)
+    ? publications.filter((p) => p.UserId === usuario.id)
     : [];
   
   return (
     <main className="container-main">
-      <UserBanner user={randomUser} />
+      <UserBanner user={usuario} />
       <div className="container-text">
         <h3 className="text-profile"> Mis posteos:</h3>
       </div>
