@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useRedirectLogin } from '../../hooks/useRedirect';
 import { useGetTags } from '../../hooks/useGetTags';
@@ -11,12 +10,13 @@ import { cambiarTitulo } from '../../utils/util';
 function NewPost() {
   cambiarTitulo('Postear');
   useRedirectLogin();
+
   const { usuario } = useContext(AuthContext);
   const [contenido, setContenido] = useState('');
-  const [imagenToPost, setimagenToPost] = useState('');
+  const [imagenesToPost, setImagenesToPost] = useState([]); // ahora es array
   const [selectedTagIds, setSelectedTagIds] = useState([]);
-  const { tags: allTags, loading, error } = useGetTags();
 
+  const { tags: allTags, loading, error } = useGetTags();
   const navigate = useNavigate();
 
   const handleTagChange = (id) => {
@@ -25,24 +25,17 @@ function NewPost() {
     );
   };
 
-  const setContenidoNuevo = (e) => {
-    setContenido(e);
-  };
-  const setimagenToPostNuevo = (e) => {
-    setimagenToPost(e);
-  };
-
   function notifyError() {
     toast.error('Hubo un error en la solicitud');
   }
 
   function notifyOk() {
-    toast.success('Post creado con exito');
+    toast.success('Post creado con éxito');
   }
 
   async function crearPost() {
     try {
-      let respuesta = await fetch('http://localhost:3001/posts', {
+      const respuesta = await fetch('http://localhost:3001/posts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -51,30 +44,25 @@ function NewPost() {
           tagIds: selectedTagIds,
         }),
       });
-      if (!respuesta.ok) {
-        throw new Error('error en la solicitud', respuesta);
-      }
+
+      if (!respuesta.ok) throw new Error('Error en la solicitud');
+
       const data = await respuesta.json();
-      if (imagenToPost) {
+
+      // Enviar múltiples imágenes
+      for (const imagenUrl of imagenesToPost) {
         await fetch('http://localhost:3001/postimages', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            url: imagenToPost,
+            url: imagenUrl,
             postId: data.id,
           }),
         });
-        // if (!respuestaImage) {
-        //   console.log('no image');
-        // } else {
-        //   console.log(`Imagen generada con id:${respuestaImage.url}`);
-        // }
       }
 
       notifyOk();
-      setTimeout(() => {
-        navigate('../home');
-      }, 3000);
+      setTimeout(() => navigate('../home'), 3000);
     } catch (error) {
       console.log(error);
       notifyError();
@@ -87,30 +75,35 @@ function NewPost() {
         <h3 className='mt-4'>Crear nuevo Post</h3>
         <div className='p-5'>
 
-
-          <div data-mdb-input-init className='form-outline mb-4'>
+          {/* Contenido */}
+          <div className='form-outline mb-4'>
             <textarea
-              id='form2Example2'
               className='form-control'
-              onChange={(e) => setContenidoNuevo(e.target.value)}
+              onChange={(e) => setContenido(e.target.value)}
               required
+              placeholder="Contenido del post..."
             />
-            <label className='form-label' htmlFor='form2Example2'>
-              Contenido
-            </label>
+            <label className='form-label'>Contenido</label>
           </div>
 
-          <div data-mdb-input-init className='form-outline mb-4'>
+          {/* Imágenes (varias) */}
+          <div className='form-outline mb-4'>
             <textarea
-              id='form2Example2'
               className='form-control'
-              onChange={(e) => setimagenToPostNuevo(e.target.value)}
+              onChange={(e) =>
+                setImagenesToPost(
+                  e.target.value
+                    .split(',')
+                    .map((url) => url.trim())
+                    .filter((url) => url !== '')
+                )
+              }
+              placeholder="Pega una o más URLs de imágenes (una por línea)"
             />
-            <label className='form-label' htmlFor='form2Example2'>
-              Ruta de imagen
-            </label>
+            <label className='form-label'>URLs de imágenes</label>
           </div>
 
+          {/* Etiquetas */}
           <fieldset className='mb-4'>
             <legend>Selecciona etiquetas:</legend>
             {loading ? (
@@ -133,18 +126,19 @@ function NewPost() {
             )}
           </fieldset>
 
+          {/* Botón */}
           <div className='row mb-4 w-100'>
             <div className='col d-flex justify-content-center w-100'>
               <button
-                data-mdb-ripple-init
                 type='button'
                 className='btn btn-primary btn-block mb-4 w-100 w-md-50'
-                onClick={() => crearPost()}
+                onClick={crearPost}
               >
                 Publicar
               </button>
             </div>
           </div>
+
         </div>
       </form>
       <ToastContainer />
