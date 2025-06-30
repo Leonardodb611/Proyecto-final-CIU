@@ -5,10 +5,10 @@ Permite a los usuarios registrarse, iniciar sesión, crear publicaciones con im�
 
 ## 📌 Tabla de contenidos
 
-- [⚙️ Instalación y Requisitos](#%EF%B8%8F-instalación-y-configuración)
-- [🚀 Tecnologías utilizadas](#-características)
+- [⚙️ Instalación](#-%EF%B8%8F-instalación)
+- [🚀 Tecnologías utilizadas](#-tecnologías-utilizadas)
 - [📲 Funcionalidades principales](#-stack-tecnológico)
-- [🌐 API utilizada]()
+- [🌐 API utilizada](#-api-utilizada)
 - [🧑‍💻 Autores](#-autores)
 
 
