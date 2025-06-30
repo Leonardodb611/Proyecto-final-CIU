@@ -8,7 +8,10 @@ export function Header() {
   return (
     <header className='conteiner-header'>
       <div className='conteiner-logo'>
-        <h2 className='container-logo-title'>ℛ𝑒𝒹-𝒜𝓃𝓉𝒾𝒮𝑜𝒸𝒾𝒶𝓁</h2>
+        <div className='conteiner-logo-img'>
+          <img src="/logo.png" alt="" style={{width: '40px'}}/>
+          <h2 className='container-logo-title'> ℛ𝑒𝒹-𝒜𝓃𝓉𝒾𝒮𝑜𝒸𝒾𝒶𝓁</h2>
+        </div>
         <ul className='header-container-navbar'>
           <Link className='header-conteiner-item' to={'/home/'}>
             <House className='header-item-icon' />
@@ -41,7 +44,7 @@ export function Header() {
           </li>
         </ul>
       </div>
-      <ModalCofirmed show = {viewModal} setShow = {setViewModal}/>
+      <ModalCofirmed show={viewModal} setShow={setViewModal} />
     </header>
   );
 }
