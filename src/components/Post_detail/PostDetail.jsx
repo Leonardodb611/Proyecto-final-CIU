@@ -69,18 +69,18 @@ const PostDetail = ({ id }) => {
         />
       </div>
 
-      <div className="post-detail-tags">
-        <h3>Tags</h3>
-        {tags.length === 0 ? (
-          <p className="post-detail-no-tags">No hay tags aún.</p>
-        ) : (
-          <ul>
-            {tags.map((t) => (
-              <li key={t.id}>{t.name}</li>
-            ))}
-          </ul>
-        )}
-      </div>
+        <div className="mt-2">
+          <strong>Etiquetas: </strong>
+          {post.Tags?.length > 0 ? (
+            post.Tags.map(tag => (
+              <span key={tag.id} className="badge bg-info text-dark me-1">
+                #{tag.name}
+              </span>
+            ))
+          ) : (
+            <span className="text-muted">Sin etiquetas</span>
+          )}
+        </div>
 
       <div className="post-detail-comments">
         <h3>
