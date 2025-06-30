@@ -9,7 +9,7 @@ import { useGetTags } from '../../hooks/useGetTags';
 import { cambiarTitulo } from '../../utils/util';
 
 function NewPost() {
-  cambiarTitulo('Postear')
+  cambiarTitulo('Postear');
   useRedirectLogin();
   const { usuario } = useContext(AuthContext);
   const [contenido, setContenido] = useState('');
@@ -19,9 +19,9 @@ function NewPost() {
 
   const navigate = useNavigate();
 
-    const handleTagChange = (id) => {
-    setSelectedTagIds(prev => 
-      prev.includes(id) ? prev.filter(tagId => tagId !== id) : [...prev, id]
+  const handleTagChange = (id) => {
+    setSelectedTagIds((prev) =>
+      prev.includes(id) ? prev.filter((tagId) => tagId !== id) : [...prev, id]
     );
   };
 
@@ -30,9 +30,7 @@ function NewPost() {
   };
   const setimagenToPostNuevo = (e) => {
     setimagenToPost(e);
-  }
-  
-
+  };
 
   function notifyError() {
     toast.error('Hubo un error en la solicitud');
@@ -62,7 +60,7 @@ function NewPost() {
 
       const data = await respuesta.json();
       console.log('usuario creado', data);
-      if(imagenToPost){
+      if (imagenToPost) {
         let respuestaImage = await fetch('http://localhost:3001/postimages', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -71,11 +69,11 @@ function NewPost() {
             postId: data.id,
           }),
         });
-        if(!respuestaImage){
-          console.log("no image")
+        if (!respuestaImage) {
+          console.log('no image');
         } else {
           console.log(`Imagen generada con id:${respuestaImage.url}`);
-        };
+        }
       }
 
       notifyOk();
@@ -89,57 +87,56 @@ function NewPost() {
   }
 
   return (
-    
     <div className='w-100 bg-dark d-flex justify-content-center align-items-center'>
       <form className='bg-white d-flex justify-content-center align-items-center flex-column w-50 h-90 rounded'>
         <h3 className='mt-4'>Crear nuevo Post</h3>
-        <div className='p-5 '>
-          <div data-mdb-input-init class='form-outline mb-4'>
+        <div className='p-5'>
+          <div data-mdb-input-init className='form-outline mb-4'>
             <input
-              type='string'
+              type='text'
               value={usuario?.nickName}
               id='form2Example2'
-              class='form-control'
+              className='form-control'
             />
-            <label class='form-label' for='form2Example1'>
+            <label className='form-label' htmlFor='form2Example1'>
               Usuario
             </label>
           </div>
 
-          <div data-mdb-input-init class='form-outline mb-4'>
+          <div data-mdb-input-init className='form-outline mb-4'>
             <textarea
-              type='string'
               id='form2Example2'
-              class='form-control'
+              className='form-control'
               onChange={(e) => setContenidoNuevo(e.target.value)}
               required
             />
-            <label class='form-label' for='form2Example2'>
+            <label className='form-label' htmlFor='form2Example2'>
               Contenido
             </label>
           </div>
-          <div data-mdb-input-init class='form-outline mb-4'>
-              <textarea
-                type='string'
-                id='form2Example2'
-                class='form-control'
-                onChange={(e) => setimagenToPostNuevo(e.target.value)}
-              />
-              <label class='form-label' for='form2Example2'>
-                Ruta de imagen
-              </label>
-            </div>
-                      <fieldset className='mb-4'>
+
+          <div data-mdb-input-init className='form-outline mb-4'>
+            <textarea
+              id='form2Example2'
+              className='form-control'
+              onChange={(e) => setimagenToPostNuevo(e.target.value)}
+            />
+            <label className='form-label' htmlFor='form2Example2'>
+              Ruta de imagen
+            </label>
+          </div>
+
+          <fieldset className='mb-4'>
             <legend>Selecciona etiquetas:</legend>
             {loading ? (
               <p>Cargando etiquetas...</p>
             ) : error ? (
               <p className='text-danger'>Error al cargar etiquetas</p>
             ) : (
-              allTags.map(tag => (
+              allTags.map((tag) => (
                 <label key={tag.id} className='d-block mb-1'>
                   <input
-                    type="checkbox"
+                    type='checkbox'
                     value={tag.id}
                     checked={selectedTagIds.includes(tag.id)}
                     onChange={() => handleTagChange(tag.id)}
@@ -150,12 +147,13 @@ function NewPost() {
               ))
             )}
           </fieldset>
-          <div class='row mb-4 w-100'>
-            <div class='col d-flex justify-content-center w-100'>
+
+          <div className='row mb-4 w-100'>
+            <div className='col d-flex justify-content-center w-100'>
               <button
                 data-mdb-ripple-init
                 type='button'
-                class='btn btn-primary btn-block mb-4 w-100 w-md-50 '
+                className='btn btn-primary btn-block mb-4 w-100 w-md-50'
                 onClick={() => crearPost()}
               >
                 Publicar
