@@ -6,12 +6,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  &:hover{
+    & .custom-btn{
+      display: block;
+    }
+    & .cant-imgs{
+      display: block;
+    }
+  }
 }
 .img-carrousel{
   height: 30rem;
 }
 /* Botones left rigth */
 .custom-btn{
+  display: none;
   border-radius: 10px;
   background-color: rgba(68, 68, 68, 0.5);
   color: rgba(255, 255, 255, 0.932);

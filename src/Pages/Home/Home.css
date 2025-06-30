@@ -34,6 +34,14 @@
 .btn-View-More{
   background-color: #588b8b !important;
   color: white !important;
+  transition: all ease .2s !important;
+  &:hover{
+    transform: scale(1.05) !important;
+    background-color: #3d5f5f !important;
+  }
+  &:focus{
+    transform: scale(0.9) !important;
+  }
 }
 /* Media Querys de aside */
 @media (max-width: 1300px) {
