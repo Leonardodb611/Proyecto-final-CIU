@@ -3,17 +3,20 @@ import { UserBanner } from "../../components/User_banner/UserBanner";
 import { useGetUserById } from "../../hooks/useGetUserById";
 import { useGetPublications } from "../../hooks/useGetPublications";
 import { CardFeed } from "../../components/Card_feed/CardFeed";
+import { cambiarTitulo } from '../../utils/util'
+import { useRedirectLogin } from '../../hooks/useRedirect';
 
 export function UserAside() {
+  useRedirectLogin()
   const { id } = useParams();
   const user = useGetUserById(id);
-
+  cambiarTitulo(user?.nickName)
   const { publications, setPublications } = useGetPublications();
 
   const isLoading = !publications || !user;
 
   const publicationsByUser = !isLoading
-    ? publications.filter((p) => p.UserId === user.id)
+    ? publications?.filter((p) => p.UserId === user.id)
     : [];
 
   return (
@@ -24,7 +27,7 @@ export function UserAside() {
           Cargando perfil...
         </p>
       ) : (
-        publicationsByUser.map((p) => (
+        publicationsByUser?.map((p) => (
           <CardFeed
             publication={p}
             key={p.id}

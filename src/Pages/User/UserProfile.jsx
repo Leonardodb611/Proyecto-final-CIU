@@ -5,7 +5,10 @@ import "./UserProfile.css";
 import { UserBanner } from "../../components/User_banner/UserBanner";
 import { useRedirectLogin } from '../../hooks/useRedirect';
 import { AuthContext } from "../../context/AuthContext";
+import { cambiarTitulo } from '../../utils/util'
+
 function Profile() {
+  cambiarTitulo('Mi Perfil')
   useRedirectLogin()
   const { publications, setPublications } = useGetPublications();
   const { usuario, loading } = useContext(AuthContext);

@@ -5,7 +5,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { useRedirectHome } from '../../hooks/useRedirect';
+import { cambiarTitulo } from '../../utils/util'
 function Login() {
+    cambiarTitulo('Iniciar sesión')
     useRedirectHome()
     const [nickName, setNickName] = useState('');
     const [password, setPassword] = useState('');

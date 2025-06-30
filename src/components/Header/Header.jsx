@@ -3,7 +3,10 @@ import './Header.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { ModalCofirmed } from '../ui/ModalConfirmed/ModalConfirmed';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 export function Header() {
+  const { usuario } = useContext(AuthContext)
   const [viewModal, setViewModal] = useState(false);
   return (
     <header className='conteiner-header'>
@@ -38,7 +41,11 @@ export function Header() {
           </Link>
           <li
             className='header-conteiner-item'
-            onClick={() => setViewModal(true)}
+            onClick={() => {
+              if(usuario){
+              setViewModal(true)}
+              }
+            }
           >
             <LogOut className='header-item-icon' />
             <span className='header-item-text'>Cerrar Sesión</span>

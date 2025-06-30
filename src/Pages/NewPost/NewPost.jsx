@@ -6,8 +6,10 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useRedirectLogin } from '../../hooks/useRedirect';
 import { useGetTags } from '../../hooks/useGetTags';
+import { cambiarTitulo } from '../../utils/util';
 
 function NewPost() {
+  cambiarTitulo('Postear')
   useRedirectLogin();
   const { usuario } = useContext(AuthContext);
   const [contenido, setContenido] = useState('');

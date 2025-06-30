@@ -4,8 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRedirectHome } from '../../hooks/useRedirect';
+import { cambiarTitulo } from '../../utils/util'
 
 function Register() {
+  cambiarTitulo('Registrarse')
   useRedirectHome()
   const [nickName, setNickName] = useState('')
   const [email, setEmail] = useState('')

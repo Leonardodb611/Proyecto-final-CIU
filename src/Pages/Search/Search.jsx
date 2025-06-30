@@ -4,8 +4,12 @@ import { useGetPublications } from "../../hooks/useGetPublications"
 import { useGetUsers } from "../../hooks/useGetUsers";
 import { CardFeed } from "../../components/Card_feed/CardFeed";
 import { CardAside } from "../../components/Card_Aside/CardAside";
+import { cambiarTitulo } from '../../utils/util'
+import { useRedirectLogin } from '../../hooks/useRedirect';
 
 export default function Search(){
+    useRedirectLogin()
+    cambiarTitulo('Buscar')
     const {publications}= useGetPublications();
     const {users} = useGetUsers();
     const [postsSearched, setPostsSearched] = useState([]);
