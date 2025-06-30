@@ -7,21 +7,23 @@ import { Post } from './pages/Post/Post.jsx'
 import Register from './Pages/Register/Register.jsx'
 import Login from './Pages/Login/Login.jsx'
 import NewPost from './Pages/NewPost/NewPost.jsx'
+import { UserAside } from './Pages/UserAside/UserAside.jsx'
 function App() {
   return (
-    <div className='container-principal'>
+    <div className="container-principal">
       <Header />
       <Routes>
-        <Route path='/home/' element={<Home/>}/>
-        <Route path='/user/my-profile' element={<UserProfile/>}/>
-        <Route path='/post/:id' element={<Post />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='*' element = {<Navigate to='/home/' />} />
-        <Route path='/publicar' element={<NewPost />} />
+        <Route path="/home/" element={<Home />} />
+        <Route path="/user/my-profile" element={<UserProfile />} />
+        <Route path="/user/:id" element={<UserAside />} />
+        <Route path="/post/:id" element={<Post />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Navigate to="/home/" />} />
+        <Route path="/publicar" element={<NewPost />} />
       </Routes>
     </div>
-  )
+  );
 }
 
 export default App
