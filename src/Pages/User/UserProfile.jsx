@@ -23,7 +23,7 @@ function Profile() {
     <main className="container-main">
       <UserBanner user={usuario} />
       <div className="container-text">
-        <h3 className="text-profile"> Mis posteos:</h3>
+        <h3 className="text-profile"> Posteos: </h3>
       </div>
       {isLoading ? (
         <p style={{ color: "white", fontWeight: "600" }} className="cargando">

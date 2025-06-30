@@ -15,7 +15,6 @@ export default function Search(){
     const [postsSearched, setPostsSearched] = useState([]);
     const [usersSearched, setUsersSearched] = useState([]);
     const [textSearched, setTextSearched] = useState("");
-    console.log(publications);
     const handleChange = (event) => {
         const text = event.target.value.toLowerCase()
         setTextSearched(event.target.value);

@@ -41,10 +41,7 @@ function NewPost() {
   }
 
   async function crearPost() {
-    console.log(contenido);
-    console.log(imagenToPost);
     try {
-      console.log(usuario.id);
       let respuesta = await fetch('http://localhost:3001/posts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -57,11 +54,9 @@ function NewPost() {
       if (!respuesta.ok) {
         throw new Error('error en la solicitud', respuesta);
       }
-
       const data = await respuesta.json();
-      console.log('usuario creado', data);
       if (imagenToPost) {
-        let respuestaImage = await fetch('http://localhost:3001/postimages', {
+        await fetch('http://localhost:3001/postimages', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -69,11 +64,11 @@ function NewPost() {
             postId: data.id,
           }),
         });
-        if (!respuestaImage) {
-          console.log('no image');
-        } else {
-          console.log(`Imagen generada con id:${respuestaImage.url}`);
-        }
+        // if (!respuestaImage) {
+        //   console.log('no image');
+        // } else {
+        //   console.log(`Imagen generada con id:${respuestaImage.url}`);
+        // }
       }
 
       notifyOk();
@@ -91,17 +86,7 @@ function NewPost() {
       <form className='bg-white d-flex justify-content-center align-items-center flex-column w-50 h-90 rounded'>
         <h3 className='mt-4'>Crear nuevo Post</h3>
         <div className='p-5'>
-          <div data-mdb-input-init className='form-outline mb-4'>
-            <input
-              type='text'
-              value={usuario?.nickName}
-              id='form2Example2'
-              className='form-control'
-            />
-            <label className='form-label' htmlFor='form2Example1'>
-              Usuario
-            </label>
-          </div>
+
 
           <div data-mdb-input-init className='form-outline mb-4'>
             <textarea

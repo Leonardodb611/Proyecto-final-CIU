@@ -22,6 +22,9 @@ export function UserAside() {
   return (
     <main className="container-main">
       <UserBanner user={user}></UserBanner>
+      <div className="container-text">
+        <h3 className="text-profile"> Posteos: </h3>
+      </div>
       {isLoading ? (
         <p style={{ color: "white", fontWeight: "600" }} className="cargando">
           Cargando perfil...
