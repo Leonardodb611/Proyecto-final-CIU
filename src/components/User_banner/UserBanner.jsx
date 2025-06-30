@@ -1,4 +1,6 @@
 import "./UserBanner.css";
+import { getRandomInt } from "../../utils/images";
+import { UserRoundCheck, UserRoundPlus} from 'lucide-react'
 
 export function UserBanner({ user }) {
   if (!user) {
@@ -9,6 +11,10 @@ export function UserBanner({ user }) {
     );
   }
 
+  const usuario = user;
+  usuario.followers = getRandomInt(1100, 5000);
+  usuario.following = getRandomInt(1000, 2000);
+  console.log(usuario);
   return (
     <div className="container-banner_profile">
       <div className="container-img_profile">
@@ -20,6 +26,21 @@ export function UserBanner({ user }) {
         </div>
         <div className="banner-nickName">
           <h1>{user.nickName}</h1>
+        </div>
+      </div>
+      <div className="container-follow">
+        <div className="container-follow-item">
+          <UserRoundCheck />
+          
+          <h1>
+            Seguidores: <span>{usuario.followers}</span>
+          </h1>
+        </div>
+        <div className="container-follow-item">
+          <UserRoundPlus />
+          <h1>
+            Siguiendo: <span>{usuario.following}</span>
+          </h1>
         </div>
       </div>
     </div>

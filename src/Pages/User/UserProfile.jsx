@@ -18,7 +18,7 @@ function Profile() {
   const publicationsByUser = !isLoading
     ? publications.filter((p) => p.UserId === usuario.id)
     : [];
-  
+
   return (
     <main className="container-main">
       <UserBanner user={usuario} />
