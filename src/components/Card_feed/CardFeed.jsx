@@ -8,6 +8,7 @@ import { CommentInput } from '../CommentInput/CommentInput';
 import { LikeButton } from '../ui/LikeButton/LikeButton';
 import { CommentButton } from '../ui/CommentButton/CommentButton';
 export function CardFeed({ publication, updateUsers, publications }) {
+  console.log(publication)
   // Estado de comentarios
   const [comment, setComment] = useState(false)
 
@@ -20,7 +21,7 @@ export function CardFeed({ publication, updateUsers, publications }) {
           </div>
         </div>
         <div className='card_feed-username'>
-          <h2>{publication.User.nickName}</h2>
+          <Link to={`/user/${publication.User.id}`}>{publication.User.nickName}</Link>
           <p>{publication.updatedAt.split('T')[0]}</p>
         </div>
       </div>

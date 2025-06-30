@@ -31,5 +31,5 @@ export const inputNotVoid = (input) => {
 }
 
 export function cambiarTitulo(tituloNuevo) {
-  document.title = tituloNuevo;
+  document.title = `Red Anti-Social | ${tituloNuevo}`;
 }

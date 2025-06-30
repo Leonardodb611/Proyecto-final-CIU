@@ -1,0 +1,22 @@
+.container-main {
+    padding-bottom: 2rem;
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+/*css de carga*/
+.cargando {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
