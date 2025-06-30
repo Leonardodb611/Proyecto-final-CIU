@@ -17,10 +17,11 @@ export function Header() {
             <House className='header-item-icon' />
             <span className='header-item-text'>Inicio</span>
           </Link>
-          <li className='header-conteiner-item'>
+          <Link className='header-conteiner-item' to={'/search'}>
+
             <Search className='header-item-icon' />
             <span className='header-item-text'>Buscar</span>
-          </li>
+          </Link>
           <li>
             <Link className='header-conteiner-item' to={'/publicar'}>
               <BadgePlus className='header-item-icon' />

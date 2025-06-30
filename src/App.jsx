@@ -8,6 +8,7 @@ import Register from './Pages/Register/Register.jsx'
 import Login from './Pages/Login/Login.jsx'
 import NewPost from './Pages/NewPost/NewPost.jsx'
 import { UserAside } from './Pages/UserAside/UserAside.jsx'
+import Search from './Pages/Search/Search.jsx'
 function App() {
   return (
     <div className="container-principal">
@@ -19,8 +20,9 @@ function App() {
         <Route path="/post/:id" element={<Post />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Navigate to="/home/" />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/publicar" element={<NewPost />} />
+        <Route path="*" element={<Navigate to="/home/" />} />
       </Routes>
     </div>
   );

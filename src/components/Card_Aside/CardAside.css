@@ -1,5 +1,4 @@
 .container-aside-article {
-  width: 20vw;
   background-color: rgba(219, 254, 255, 0.062);
   display: flex;
   align-items: center;
@@ -7,6 +6,8 @@
   padding: 0.5rem 0.7rem;
   border-radius: 20px;
   transition: all ease 0.2s;
+  flex: 1;
+  gap: 0.3rem;
   &:hover {
     transform: scale(1.01);
     background-color: rgba(87, 255, 255, 0.219);

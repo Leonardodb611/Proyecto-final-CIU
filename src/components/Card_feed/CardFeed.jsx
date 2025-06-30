@@ -8,8 +8,6 @@ import { CommentInput } from '../CommentInput/CommentInput';
 import { LikeButton } from '../ui/LikeButton/LikeButton';
 import { CommentButton } from '../ui/CommentButton/CommentButton';
 export function CardFeed({ publication, updateUsers, publications }) {
-  console.log(publication)
-  // Estado de comentarios
   const [comment, setComment] = useState(false)
 
   return (
