@@ -7,6 +7,7 @@ import { useRedirectLogin } from '../../hooks/useRedirect';
 import { useGetTags } from '../../hooks/useGetTags';
 import { cambiarTitulo } from '../../utils/util';
 
+
 function NewPost() {
   cambiarTitulo('Postear');
   useRedirectLogin();
@@ -71,25 +72,29 @@ function NewPost() {
 
   return (
     <div className='w-100 bg-dark d-flex justify-content-center align-items-center'>
-      <form className='bg-white d-flex justify-content-center align-items-center flex-column w-50 h-90 rounded'>
-        <h3 className='mt-4'>Crear nuevo Post</h3>
-        <div className='p-5'>
+      <form style={{width:"90%", height:"95%", color: "rgba(233, 233, 233, 0.788)"}} className='p-3 d-flex justify-content-center align-items-center flex-column  h-90 rounded'>
+        <h3 className=''>Crear nuevo Post</h3>
+        <div className='p-4 pt-1 w-100'>
 
           {/* Contenido */}
-          <div className='form-outline mb-4'>
+          <div className='form-outline mb-4' style={{height:'30%'}}>
+            <label className='form-label'>Contenido</label>
             <textarea
-              className='form-control'
+              style={{resize: "none", height: '100%'}}
+              className='form-control imput-container'
               onChange={(e) => setContenido(e.target.value)}
               required
               placeholder="Contenido del post..."
             />
-            <label className='form-label'>Contenido</label>
+            
           </div>
 
           {/* Imágenes (varias) */}
-          <div className='form-outline mb-4'>
+          <div className='form-outline mb-4 pt-4' style={{height:'25%'}}>
+            <label className='form-label '>URLs de imágenes</label>
             <textarea
-              className='form-control'
+              className='form-control '
+              style={{resize: "none", height: '100%'}}
               onChange={(e) =>
                 setImagenesToPost(
                   e.target.value
@@ -100,11 +105,11 @@ function NewPost() {
               }
               placeholder="Pega una o más URLs de imágenes (una por línea)"
             />
-            <label className='form-label'>URLs de imágenes</label>
+            
           </div>
 
           {/* Etiquetas */}
-          <fieldset className='mb-4'>
+          <fieldset className='mb-4 pt-2'>
             <legend>Selecciona etiquetas:</legend>
             {loading ? (
               <p>Cargando etiquetas...</p>
@@ -130,6 +135,7 @@ function NewPost() {
           <div className='row mb-4 w-100'>
             <div className='col d-flex justify-content-center w-100'>
               <button
+              style={{backgroundColor: 'rgba(87, 255, 255, 0.219)'}}
                 type='button'
                 className='btn btn-primary btn-block mb-4 w-100 w-md-50'
                 onClick={crearPost}
