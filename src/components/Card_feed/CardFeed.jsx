@@ -23,7 +23,7 @@ export function CardFeed({ publication, updateUsers, publications }) {
           <p>{publication.updatedAt.split('T')[0]}</p>
         </div>
       </div>
-      <div >
+      <div className='container_decription_card_feed'>
         <div className='card_feed-description'>
           <p className='card_feed-description-text'>{publication.description}</p>
         </div>
