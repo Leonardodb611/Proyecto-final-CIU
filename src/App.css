@@ -7,7 +7,7 @@
 /* Boton de github */
 .container-btn-github{
   opacity: 0.3;
-  position: absolute;
+  position: fixed;
   right: 0;
   margin-top: 90vh ;
   margin-right: 2rem;
