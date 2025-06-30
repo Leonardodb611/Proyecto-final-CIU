@@ -5,27 +5,23 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useRedirectLogin } from '../../hooks/useRedirect';
-import { useEffect } from 'react';
+import { useGetTags } from '../../hooks/useGetTags';
+
 function NewPost() {
   useRedirectLogin();
   const { usuario } = useContext(AuthContext);
   const [contenido, setContenido] = useState('');
   const [imagenToPost, setimagenToPost] = useState('');
-  const [allTags, setAllTags] = useState([]);
   const [selectedTagIds, setSelectedTagIds] = useState([]);
-  useEffect(() => {
-    fetch('http://localhost:3001/tags')
-      .then(res => res.json())
-      .then(data => setAllTags(data));
-  }, []);
+  const { tags: allTags, loading, error } = useGetTags();
 
-  const handleTagChange = (id) => {
+  const navigate = useNavigate();
+
+    const handleTagChange = (id) => {
     setSelectedTagIds(prev => 
       prev.includes(id) ? prev.filter(tagId => tagId !== id) : [...prev, id]
     );
   };
-
-  const navigate = useNavigate();
 
   const setContenidoNuevo = (e) => {
     setContenido(e);
@@ -131,21 +127,27 @@ function NewPost() {
                 Ruta de imagen
               </label>
             </div>
-            <fieldset style={{ marginTop: '1em' }}>
-              <legend>Selecciona etiquetas:</legend>
-                {allTags.map(tag => (
-                    <label key={tag.id} style={{ display: 'block', marginBottom: '0.3em', cursor: 'pointer' }}>
-                      <input
-                        type="checkbox"
-                        value={tag.id}
-                        checked={selectedTagIds.includes(tag.id)}
-                        onChange={() => handleTagChange(tag.id)}
-                        style={{ marginRight: '0.5em' }}
-                      />
-                      {tag.name}
-                    </label>
-                  ))}
-            </fieldset>
+                      <fieldset className='mb-4'>
+            <legend>Selecciona etiquetas:</legend>
+            {loading ? (
+              <p>Cargando etiquetas...</p>
+            ) : error ? (
+              <p className='text-danger'>Error al cargar etiquetas</p>
+            ) : (
+              allTags.map(tag => (
+                <label key={tag.id} className='d-block mb-1'>
+                  <input
+                    type="checkbox"
+                    value={tag.id}
+                    checked={selectedTagIds.includes(tag.id)}
+                    onChange={() => handleTagChange(tag.id)}
+                    className='me-2'
+                  />
+                  {tag.name}
+                </label>
+              ))
+            )}
+          </fieldset>
           <div class='row mb-4 w-100'>
             <div class='col d-flex justify-content-center w-100'>
               <button
