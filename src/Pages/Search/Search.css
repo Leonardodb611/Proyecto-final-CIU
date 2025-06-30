@@ -16,6 +16,7 @@
     color: #1a5252;
     font-size: calc(12px + 0.5vw);
     width: 20vw;
+    border: 2px solid #00000000;
     &:focus{
         outline: none;
         border: 2px solid #00000042;

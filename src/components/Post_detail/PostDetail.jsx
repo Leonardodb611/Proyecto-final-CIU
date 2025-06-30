@@ -12,7 +12,6 @@ const PostDetail = ({ id }) => {
     comments = [],
     images = [],
     loading,
-    tags = [],
   } = useGetPostDetail(id);
 
   const [post, setPost] = useState(null);
@@ -68,9 +67,8 @@ const PostDetail = ({ id }) => {
           setSinglePublication={setPost}
         />
       </div>
-
-        <div className="mt-2">
-          <strong>Etiquetas: </strong>
+      <div className="post-detail-tags">
+          <h3>Etiquetas</h3>
           {post.Tags?.length > 0 ? (
             post.Tags.map(tag => (
               <span key={tag.id} className="badge bg-info text-dark me-1">
@@ -78,10 +76,9 @@ const PostDetail = ({ id }) => {
               </span>
             ))
           ) : (
-            <span className="text-muted">Sin etiquetas</span>
+            <span className="post-detail-no-tags">Sin etiquetas</span>
           )}
-        </div>
-
+      </div>
       <div className="post-detail-comments">
         <h3>
           Comentarios

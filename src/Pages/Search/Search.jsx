@@ -11,6 +11,7 @@ export default function Search(){
     const [postsSearched, setPostsSearched] = useState([]);
     const [usersSearched, setUsersSearched] = useState([]);
     const [textSearched, setTextSearched] = useState("");
+    console.log(publications);
     const handleChange = (event) => {
         const text = event.target.value.toLowerCase()
         setTextSearched(event.target.value);
@@ -19,10 +20,14 @@ export default function Search(){
             setPostsSearched([]);
             return; 
         }
-        const postsFiltered = publications.filter( p => p.description.toLowerCase().startsWith(text));
+        const postsFiltered = publications?.filter(p =>
+            p.description.toLowerCase().startsWith(text) || 
+            p.Tags.some(t => t.name.toLowerCase().startsWith(text)) 
+        );
         const usersFiltered = users.filter( u => u.nickName.toLowerCase().startsWith(text));
         setUsersSearched(usersFiltered)
         setPostsSearched(postsFiltered);
+        
 
     }
     useEffect(() => {}, [usersSearched, postsSearched]);
