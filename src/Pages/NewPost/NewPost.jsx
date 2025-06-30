@@ -5,15 +5,36 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useRedirectLogin } from '../../hooks/useRedirect';
+import { useEffect } from 'react';
 function NewPost() {
   useRedirectLogin();
   const { usuario } = useContext(AuthContext);
   const [contenido, setContenido] = useState('');
+  const [imagenToPost, setimagenToPost] = useState('');
+  const [allTags, setAllTags] = useState([]);
+  const [selectedTagIds, setSelectedTagIds] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:3001/tags')
+      .then(res => res.json())
+      .then(data => setAllTags(data));
+  }, []);
+
+  const handleTagChange = (id) => {
+    setSelectedTagIds(prev => 
+      prev.includes(id) ? prev.filter(tagId => tagId !== id) : [...prev, id]
+    );
+  };
+
   const navigate = useNavigate();
 
   const setContenidoNuevo = (e) => {
     setContenido(e);
   };
+  const setimagenToPostNuevo = (e) => {
+    setimagenToPost(e);
+  }
+  
+
 
   function notifyError() {
     toast.error('Hubo un error en la solicitud');
@@ -25,6 +46,7 @@ function NewPost() {
 
   async function crearPost() {
     console.log(contenido);
+    console.log(imagenToPost);
     try {
       console.log(usuario.id);
       let respuesta = await fetch('http://localhost:3001/posts', {
@@ -33,7 +55,7 @@ function NewPost() {
         body: JSON.stringify({
           description: contenido,
           userId: usuario.id,
-          tagIds: [],
+          tagIds: selectedTagIds,
         }),
       });
       if (!respuesta.ok) {
@@ -42,6 +64,22 @@ function NewPost() {
 
       const data = await respuesta.json();
       console.log('usuario creado', data);
+      if(imagenToPost){
+        let respuestaImage = await fetch('http://localhost:3001/postimages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            url: imagenToPost,
+            postId: data.id,
+          }),
+        });
+        if(!respuestaImage){
+          console.log("no image")
+        } else {
+          console.log(`Imagen generada con id:${respuestaImage.url}`);
+        };
+      }
+
       notifyOk();
       setTimeout(() => {
         navigate('../home');
@@ -82,7 +120,32 @@ function NewPost() {
               Contenido
             </label>
           </div>
-
+          <div data-mdb-input-init class='form-outline mb-4'>
+              <textarea
+                type='string'
+                id='form2Example2'
+                class='form-control'
+                onChange={(e) => setimagenToPostNuevo(e.target.value)}
+              />
+              <label class='form-label' for='form2Example2'>
+                Ruta de imagen
+              </label>
+            </div>
+            <fieldset style={{ marginTop: '1em' }}>
+              <legend>Selecciona etiquetas:</legend>
+                {allTags.map(tag => (
+                    <label key={tag.id} style={{ display: 'block', marginBottom: '0.3em', cursor: 'pointer' }}>
+                      <input
+                        type="checkbox"
+                        value={tag.id}
+                        checked={selectedTagIds.includes(tag.id)}
+                        onChange={() => handleTagChange(tag.id)}
+                        style={{ marginRight: '0.5em' }}
+                      />
+                      {tag.name}
+                    </label>
+                  ))}
+            </fieldset>
           <div class='row mb-4 w-100'>
             <div class='col d-flex justify-content-center w-100'>
               <button

@@ -72,7 +72,7 @@ function Login() {
     
     <div className="row mb-4 w-100">
         <div className="col d-flex justify-content-center w-100">
-        <button data-mdb-ripple-init type="button" className="btn btn-primary btn-block mb-4 w-100 w-md-50 " onClick={()=> handleLogin() }>Sign in</button>
+        <button data-mdb-ripple-init type="button" className="btn btn-primary btn-block mb-4 w-100 w-md-50 " onClick={()=> handleLogin() }>Iniciar sesión</button>
         </div>
 
         
