@@ -9,6 +9,7 @@ import Login from './Pages/Login/Login.jsx'
 import NewPost from './Pages/NewPost/NewPost.jsx'
 import { UserAside } from './Pages/UserAside/UserAside.jsx'
 import Search from './Pages/Search/Search.jsx'
+import { Github } from 'lucide-react'
 function App() {
   return (
     <div className="container-principal">
@@ -24,6 +25,13 @@ function App() {
         <Route path="/publicar" element={<NewPost />} />
         <Route path="*" element={<Navigate to="/home/" />} />
       </Routes>
+      <a 
+      href='https://github.com/Leonardodb611/Proyecto-final-CIU.git'
+      target='_blank'
+      title='Ir al repositorio'
+      className="container-btn-github">
+        <Github className='btn-github-custom'/>
+      </a>
     </div>
   );
 }
