@@ -9,7 +9,7 @@ export function Header() {
   const { usuario } = useContext(AuthContext)
   const [viewModal, setViewModal] = useState(false);
   return (
-    <header className='conteiner-header'>
+    <header className={`conteiner-header ${!usuario ? 'hidden' : ''}`} >
       <div className='conteiner-logo'>
         <div className='conteiner-logo-img'>
           <img src="/logo.png" alt="" style={{width: '40px'}}/>

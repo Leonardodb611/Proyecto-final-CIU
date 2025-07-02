@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { useRedirectHome } from '../../hooks/useRedirect';
 import { cambiarTitulo } from '../../utils/util';
+import './Login.css';
 function Login() {
   cambiarTitulo('Iniciar sesión');
   useRedirectHome();
@@ -51,58 +52,65 @@ function Login() {
   }
 
   return (
-    <div className='w-100 bg-dark d-flex justify-content-center align-items-center'>
-      <form className='bg-white d-flex justify-content-center align-items-center flex-column w-50 h-90 rounded'>
-        <h3 className='mt-4'>Login</h3>
-        <div className='p-5'>
-          <div data-mdb-input-init className='form-outline mb-4'>
-            <input
-              type='text'
-              id='nickName'
-              className='form-control'
-              required
-              onChange={(e) => setNickName(e.target.value)}
-            />
-            <label className='form-label' htmlFor='nickName'>
-              Nombre de usuario
-            </label>
-          </div>
+    <main className='conteiner-main-login'>
+      <div className='conteiner-message-welcome'>
+        <h2 className='title-message-welcome'>¡Hola de nuevo!</h2>
+        <p className='text-message-welcome'>Creá tu cuenta</p>
+        <Link to={'/register'}>
+          <button className='button-message-welcome'>Registrarme</button>
+        </Link>
+      </div>
+      <div className='container-form-custom'>
+        <form className='d-flex justify-content-center align-items-center flex-column'>
+          <h3 className='mt-4'>Iniciar sesion</h3>
+          <div className='p-5'>
+            <div data-mdb-input-init className='form-outline mb-4'>
+              <input
+                placeholder='sol'
+                type='text'
+                id='nickName'
+                className='form-control message-wel-input'
+                required
+                onChange={(e) => setNickName(e.target.value)}
+              />
+              <label className='form-label' htmlFor='nickName'>
+                Nombre de usuario
+              </label>
+            </div>
 
-          <div data-mdb-input-init className='form-outline mb-4'>
-            <input
-              type='password'
-              id='contraseña'
-              className='form-control'
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <label className='form-label' htmlFor='contraseña'>
-              Contraseña
-            </label>
-          </div>
+            <div data-mdb-input-init className='form-outline mb-4'>
+              <input
+                placeholder='123456'
+                type='password'
+                id='contraseña'
+                className='form-control message-wel-input'
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <label className='form-label' htmlFor='contraseña'>
+                Contraseña
+              </label>
+            </div>
 
-          <div className='row mb-4 w-100'>
-            <div className='col d-flex justify-content-center w-100'>
+            <div >
               <button
                 data-mdb-ripple-init
                 type='button'
-                className='btn btn-primary btn-block mb-4 w-100 w-md-50'
+                className='btn btn-custom btn-block mb-4 w-100 w-md-50'
                 onClick={() => handleLogin()}
               >
                 Iniciar sesión
               </button>
             </div>
-          </div>
 
-          <div className='text-center'>
-            <p>
-              No tenes cuenta? <Link to='/register'>Registrarse</Link>
-            </p>
+            <div className='text-center'>
+              <p style={{textDecoration: 'underline',cursor:'pointer'}}>¿Olvidaste tu contraseña?</p>
+            </div>
           </div>
-        </div>
-      </form>
-      <ToastContainer />
-    </div>
+        </form>
+        <ToastContainer />
+      </div>
+    </main>
   );
 }
 

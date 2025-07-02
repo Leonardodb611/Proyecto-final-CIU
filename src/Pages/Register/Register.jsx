@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRedirectHome } from '../../hooks/useRedirect';
 import { cambiarTitulo } from '../../utils/util';
-
+import './Register.css'
 function Register() {
   cambiarTitulo('Registrarse');
   useRedirectHome();
@@ -71,58 +71,62 @@ function Register() {
   }
 
   return (
-    <div className='w-100 bg-dark d-flex justify-content-center align-items-center'>
-      <form className='bg-white d-flex justify-content-center align-items-center flex-column w-50 h-90 rounded'>
-        <h3 className='mt-4'>Registro</h3>
-        <div className='p-5'>
-          <div data-mdb-input-init className='form-outline mb-4'>
-            <input
-              type='text'
-              id='form2Example1'
-              className='form-control'
-              required
-              onChange={(e) => setUsuario(e.target.value)}
-            />
-            <label className='form-label' htmlFor='form2Example1'>
-              Nombre de usuario
-            </label>
-          </div>
-
-          <div data-mdb-input-init className='form-outline mb-4'>
-            <input
-              type='email'
-              id='form2Example2'
-              className='form-control'
-              required
-              onChange={(e) => setEmailNuevo(e.target.value)}
-            />
-            <label className='form-label' htmlFor='form2Example2'>
-              Email
-            </label>
-          </div>
-
-          <div className='row mb-4 w-100'>
-            <div className='col d-flex justify-content-center w-100'>
-              <button
-                data-mdb-ripple-init
-                type='button'
-                className='btn btn-primary btn-block mb-4 w-100 w-md-50'
-                onClick={() => crearUsuario(nickName, email)}
-              >
-                Sign in
-              </button>
+    <main className='conteiner-main-login'>
+      <div className='container-form-custom'>
+        <form className='d-flex justify-content-center align-items-center flex-column'>
+          <h3 className='mt-4'>Registrate</h3>
+          <div className='p-5'>
+            <div data-mdb-input-init className='form-outline mb-4'>
+              <input
+                type='text'
+                id='form2Example1'
+                className='form-control message-wel-input'
+                required
+                onChange={(e) => setUsuario(e.target.value)}
+              />
+              <label className='form-label' htmlFor='form2Example1'>
+                Nombre de usuario
+              </label>
             </div>
-          </div>
 
-          <div className='text-center'>
-            <p>
-              Ya tenes cuenta? <Link to='/login'>Iniciar sesión</Link>
-            </p>
+            <div data-mdb-input-init className='form-outline mb-4'>
+              <input
+                type='email'
+                id='form2Example2'
+                className='form-control message-wel-input'
+                required
+                onChange={(e) => setEmailNuevo(e.target.value)}
+              />
+              <label className='form-label' htmlFor='form2Example2'>
+                Email
+              </label>
+            </div>
+
+            <div>
+              <div className='col d-flex justify-content-center w-100'>
+                <button
+                  data-mdb-ripple-init
+                  type='button'
+                  className='btn btn-custom btn-block mb-4 w-100 w-md-50'
+                  onClick={() => crearUsuario(nickName, email)}
+                >
+                  Registrarse
+                </button>
+              </div>
+            </div>
+
           </div>
-        </div>
-      </form>
-      <ToastContainer />
-    </div>
+        </form>
+        <ToastContainer />
+      </div>
+      <div className='conteiner-message-welcome'>
+        <h2 className='title-message-welcome'>¡Bienvenido!</h2>
+        <p className='text-message-welcome'>¿Ya tenés cuenta?</p>
+        <Link to={'/login'}>
+          <button className='button-message-welcome'>Iniciar Sesion</button>
+        </Link>
+      </div>
+    </main>
   );
 }
 

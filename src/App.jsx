@@ -10,7 +10,10 @@ import NewPost from './Pages/NewPost/NewPost.jsx'
 import { UserAside } from './Pages/UserAside/UserAside.jsx'
 import Search from './Pages/Search/Search.jsx'
 import { Github } from 'lucide-react'
+import { useContext } from 'react'
+import { AuthContext } from './context/AuthContext.jsx'
 function App() {
+  const {usuario} = useContext(AuthContext)
   return (
     <div className="container-principal">
       <Header />
@@ -29,7 +32,7 @@ function App() {
       href='https://github.com/Leonardodb611/Proyecto-final-CIU.git'
       target='_blank'
       title='Ir al repositorio'
-      className="container-btn-github">
+      className={`container-btn-github ${!usuario ? 'hidden' : ''}`}>
         <Github className='btn-github-custom'/>
       </a>
     </div>
