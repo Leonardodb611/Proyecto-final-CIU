@@ -71,7 +71,7 @@ function Register() {
   }
 
   return (
-    <main className='conteiner-main-login'>
+    <main className='conteiner-main-login conteiner-main-register'>
       <div className='container-form-custom'>
         <form className='d-flex justify-content-center align-items-center flex-column'>
           <h3 className='mt-4'>Registrate</h3>
