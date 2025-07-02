@@ -84,7 +84,7 @@ function Register() {
                 required
                 onChange={(e) => setUsuario(e.target.value)}
               />
-              <label className='form-label' htmlFor='form2Example1'>
+              <label className='form-label label-login' htmlFor='form2Example1'>
                 Nombre de usuario
               </label>
             </div>
@@ -97,7 +97,7 @@ function Register() {
                 required
                 onChange={(e) => setEmailNuevo(e.target.value)}
               />
-              <label className='form-label' htmlFor='form2Example2'>
+              <label className='form-label label-login' htmlFor='form2Example2'>
                 Email
               </label>
             </div>

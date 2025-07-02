@@ -3,3 +3,9 @@
     flex-direction: column-reverse !important;
   }
 }
+.label-login{
+  color: white !important;
+  font-weight: 300 !important;
+  margin-bottom: none !important;
+  display: block;
+}

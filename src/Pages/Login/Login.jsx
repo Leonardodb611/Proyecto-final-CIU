@@ -73,7 +73,7 @@ function Login() {
                 required
                 onChange={(e) => setNickName(e.target.value)}
               />
-              <label className='form-label' htmlFor='nickName'>
+              <label className='form-label label-login' htmlFor='nickName'>
                 Nombre de usuario
               </label>
             </div>
@@ -87,7 +87,7 @@ function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <label className='form-label' htmlFor='contraseña'>
+              <label className='form-label label-login' htmlFor='contraseña'>
                 Contraseña
               </label>
             </div>
