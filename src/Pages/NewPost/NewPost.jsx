@@ -1,12 +1,12 @@
+import './NewPost.css';
 import React, { useState, useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer, toast } from 'react-toastify';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import { useRedirectLogin } from '../../hooks/useRedirect';
 import { useGetTags } from '../../hooks/useGetTags';
 import { cambiarTitulo } from '../../utils/util';
-
 
 function NewPost() {
   cambiarTitulo('Postear');
@@ -14,7 +14,7 @@ function NewPost() {
 
   const { usuario } = useContext(AuthContext);
   const [contenido, setContenido] = useState('');
-  const [imagenesToPost, setImagenesToPost] = useState([]); // ahora es array
+  const [imagenesToPost, setImagenesToPost] = useState([]);
   const [selectedTagIds, setSelectedTagIds] = useState([]);
 
   const { tags: allTags, loading, error } = useGetTags();
@@ -50,7 +50,6 @@ function NewPost() {
 
       const data = await respuesta.json();
 
-      // Enviar múltiples imágenes
       for (const imagenUrl of imagenesToPost) {
         await fetch('http://localhost:3001/postimages', {
           method: 'POST',
@@ -71,82 +70,66 @@ function NewPost() {
   }
 
   return (
-    <div className='w-100 bg-dark d-flex justify-content-center align-items-center'>
-      <form style={{width:"90%", height:"95%", color: "rgba(233, 233, 233, 0.788)"}} className='p-3 d-flex justify-content-center align-items-center flex-column  h-90 rounded'>
-        <h3 className=''>Crear nuevo Post</h3>
-        <div className='p-4 pt-1 w-100'>
+    <div className='new-post-wrapper'>
+      <div className='new-post-card'>
+        <h3 className='post-title'>Crear nueva publicacion</h3>
 
-          {/* Contenido */}
-          <div className='form-outline mb-4' style={{height:'30%'}}>
-            <label className='form-label'>Contenido</label>
-            <textarea
-              style={{resize: "none", height: '100%'}}
-              className='form-control imput-container'
-              onChange={(e) => setContenido(e.target.value)}
-              required
-              placeholder="Contenido del post..."
-            />
-            
-          </div>
+        {/* Contenido */}
+        <div className='form-section'>
+          <label className='form-label'>Contenido</label>
+          <textarea
+            className='custom-input'
+            onChange={(e) => setContenido(e.target.value)}
+            required
+            placeholder="Escribe algo interesante..."
+          />
+        </div>
 
-          {/* Imágenes (varias) */}
-          <div className='form-outline mb-4 pt-4' style={{height:'25%'}}>
-            <label className='form-label '>URLs de imágenes</label>
-            <textarea
-              className='form-control '
-              style={{resize: "none", height: '100%'}}
-              onChange={(e) =>
-                setImagenesToPost(
-                  e.target.value
-                    .split(',')
-                    .map((url) => url.trim())
-                    .filter((url) => url !== '')
-                )
-              }
-              placeholder="Pega una o más URLs de imágenes (una por línea)"
-            />
-            
-          </div>
+        {/* Imágenes */}
+        <div className='form-section'>
+          <label className='form-label'>URLs de imágenes</label>
+          <textarea
+            className='custom-input'
+            onChange={(e) =>
+              setImagenesToPost(
+                e.target.value
+                  .split(',')
+                  .map((url) => url.trim())
+                  .filter((url) => url !== '')
+              )
+            }
+            placeholder="Pega una o más URLs de imágenes (una por línea)"
+          />
+        </div>
 
-          {/* Etiquetas */}
-          <fieldset className='mb-4 pt-2'>
-            <legend>Selecciona etiquetas:</legend>
+        {/* Etiquetas */}
+        <div className='form-section'>
+          <label className='form-label'>Etiquetas</label>
+          <div className='tags-section'>
             {loading ? (
-              <p>Cargando etiquetas...</p>
+            <p>Cargando etiquetas...</p>
             ) : error ? (
-              <p className='text-danger'>Error al cargar etiquetas</p>
+            <p className='text-danger'>Error al cargar etiquetas</p>
             ) : (
               allTags.map((tag) => (
-                <label key={tag.id} className='d-block mb-1'>
-                  <input
-                    type='checkbox'
-                    value={tag.id}
-                    checked={selectedTagIds.includes(tag.id)}
-                    onChange={() => handleTagChange(tag.id)}
-                    className='me-2'
-                  />
-                  {tag.name}
-                </label>
-              ))
+              <div className='tag-checkbox' key={tag.id}>
+                <input
+                type='checkbox'
+                id={`tag-${tag.id}`}
+                value={tag.id}
+                checked={selectedTagIds.includes(tag.id)}
+                onChange={() => handleTagChange(tag.id)}
+                />
+                <label htmlFor={`tag-${tag.id}`}>{tag.name}</label>
+              </div>
+            ))
             )}
-          </fieldset>
-
-          {/* Botón */}
-          <div className='row mb-4 w-100'>
-            <div className='col d-flex justify-content-center w-100'>
-              <button
-              style={{backgroundColor: 'rgba(87, 255, 255, 0.219)'}}
-                type='button'
-                className='btn btn-primary btn-block mb-4 w-100 w-md-50'
-                onClick={crearPost}
-              >
-                Publicar
-              </button>
-            </div>
           </div>
-
         </div>
-      </form>
+        <button className='publish-btn' onClick={crearPost}>
+          Publicar
+        </button>
+      </div>
       <ToastContainer />
     </div>
   );
