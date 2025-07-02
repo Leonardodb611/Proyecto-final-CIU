@@ -6,7 +6,7 @@
   padding: 0.5rem 0.7rem;
   border-radius: 20px;
   transition: all ease 0.2s;
-  gap: 0.3rem;
+  gap: 2rem;
   &:hover {
     transform: scale(1.01);
     background-color: rgba(87, 255, 255, 0.219);

@@ -47,6 +47,8 @@ npm run dev
 - Formulario de registro con validación de nickname y email.
 - Registro con `POST /users`
 
+![Image](./public/REGISTER.png)
+
 ### ✅ Inicio de sesión (simulado)
 
 - Vista `/login/`
@@ -55,6 +57,7 @@ npm run dev
 - Validación local de la contraseña
 - Persistencia con `localStorage` y `Context`
 
+![Image](./public/LOGIN.png)
 
 ### 🏠 Página principal (Home)
 - Vista `/home/`
@@ -72,7 +75,7 @@ npm run dev
   - Nickname
   - Atajo para ver perfil del usuario
 
-![Image](./public/capt-home.png)
+![Image](./public/FEED.png)
 
 
 ### 💬 Detalle de publicación
@@ -86,19 +89,31 @@ npm run dev
   - Cantidad de likes (simulados)
 - Agregar comentario nuevo
 
-![Image](./public/capt-post-detail.png)
+![Image](./public/DETAIL.png)
 
 ### 🙍 Perfil de usuario (ruta protegida)
 
-- Muestra datos del usuario logeado(foto de perfil, email, nickname)
+- Vista `/user/my-profile`
+- Muestra datos del usuario logeado(foto de perfil, nickname, seguidores y seguidos simulados)
 - Muestra publicaciones del usuario logeado
 
+![Image](./public/MYPROFILE.png)
+
+
 ### 📝 Crear nueva publicación (ruta protegida)
+
+- Vista `/publicar`
 - Formulario controlado:
   - Descripción (obligatoria)
   - URLs de imágenes (opcionales) divididas por una coma
   - Selección de etiquetas
 - Redirección a `/home`
+
+![Image](./public/NEWPOST.png)
+
+### 📝 Busqueda por nickname, descripcion de publicacion o etiquetas (ruta protegida)
+
+![Image](./public/SEARCH.png)
 
 ## 🧪 Extras implementados (bonus)
 

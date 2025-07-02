@@ -53,17 +53,20 @@ function Home() {
               publications={publicationsView}
             />
           ))
-        ) : (
+        ) : publications?.length !== 0 ?
           <span style={{ color: 'white', fontWeight: '600' }}>
             No se pudieron cargar las publicaciones
+          </span>:
+          <span style={{ color: 'white', fontWeight: '600' }}>
+            No hay publicaciones para mostrar
           </span>
-        )}
-        {publicationsView?.length < publications?.length ? 
+        }
+        {publicationsView?.length < publications?.length? 
           <button className='btn btn-View-More' onClick={handleLoadMore}>
             Cargar más
           </button>
-        :
-          <span style={{color: 'white', fontWeight: '500'}}>Es todo por hoy</span>
+        : publications?.length !== 0 ?
+          <span style={{color: 'white', fontWeight: '500'}}>Es todo por hoy</span> : ''
         }
       </main>
       <aside className='container-aside-home'>
