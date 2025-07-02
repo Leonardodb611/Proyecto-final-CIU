@@ -14,7 +14,7 @@ export function UserBanner({ user }) {
   const usuario = user;
   usuario.followers = getRandomInt(1100, 5000);
   usuario.following = getRandomInt(1000, 2000);
-  console.log(usuario);
+  
   return (
     <div className="container-banner_profile">
       <div className="container-img_profile">

@@ -29,6 +29,13 @@ export function UserAside() {
         <p style={{ color: "white", fontWeight: "600" }} className="cargando">
           Cargando perfil...
         </p>
+      ) : publicationsByUser.length === 0 ? (
+        <p
+          style={{ color: "white", fontWeight: "600" }}
+          className="sin-posteos"
+        >
+          No hay posteos realizados.
+        </p>
       ) : (
         publicationsByUser?.map((p) => (
           <CardFeed
