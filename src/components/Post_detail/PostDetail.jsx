@@ -5,7 +5,7 @@ import { CarrouselImages } from '../CarrouselImages/CarrouselImages';
 import { CommentInput } from '../CommentInput/CommentInput';
 import { LikeButton } from '../ui/LikeButton/LikeButton';
 import { cambiarTitulo } from '../../utils/util';
-
+import { CommentButton } from '../ui/CommentButton/CommentButton'
 const PostDetail = ({ id }) => {
   const {
     post: fetchedPost,
@@ -66,6 +66,8 @@ const PostDetail = ({ id }) => {
           publication={post}
           setSinglePublication={setPost}
         />
+        <CommentButton 
+          publication= {post} setComment ={setCommentVisible} comment = {commentVisible}/>
       </div>
       <div className="post-detail-tags">
           <h3>Etiquetas</h3>
@@ -82,8 +84,11 @@ const PostDetail = ({ id }) => {
       <div className="post-detail-comments">
         <h3>
           Comentarios
-          <button onClick={() => setCommentVisible(!commentVisible)}>
-            {commentVisible ? 'Cancelar' : 'Comentar'}
+          <button 
+            onClick={() => setCommentVisible(!commentVisible)}
+            className={commentVisible ? `hidden` : ''}
+            >
+            {'Comentar'}
           </button>
         </h3>
         {localComments.length === 0 ? (

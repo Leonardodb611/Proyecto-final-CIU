@@ -30,6 +30,7 @@ export function CommentInput({
         type='text'
         maxLength={500}
         value={commentText}
+        placeholder='Realizar un comentario'
       />
       <div className='btns-comment'>
         {showSpinner && (

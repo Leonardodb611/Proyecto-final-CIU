@@ -15,6 +15,7 @@ export const useGetPostDetail = (id) => {
         const resComments = await fetch(`http://localhost:3001/comments/post/${id}`);
         const commentsData = await resComments.json();
 
+        postData.comments = commentsData
         const resImages = await fetch(`http://localhost:3001/postimages/post/${id}`);
         const imagesData = await resImages.json();
 
