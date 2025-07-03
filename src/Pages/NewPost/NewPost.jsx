@@ -98,7 +98,7 @@ function NewPost() {
                   .filter((url) => url !== '')
               )
             }
-            placeholder="Pega una o más URLs de imágenes (una por línea)"
+            placeholder="Pega una o más URLs de imágenes (separadas por comas)"
           />
         </div>
 
